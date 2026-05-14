@@ -81,29 +81,6 @@ async function submitToKit(name, email) {
   }
 }
 
-const response = await fetch(
-  `https://app.kit.com/forms/KIT_FORM_ID/subscriptions`,
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      api_key: "KIT_API_KEY",
-      email: userEmail,
-      first_name: userFirstName,
-    }),
-  },
-);
-
-if (response.ok) {
-  // Redirect to success page
-  window.location.href = "/success";
-} else {
-  // Show error message on page
-  showErrorMessage("Something went wrong. Please try again.");
-}
-
 /* ══════════════════════════════════════════════════════════════════
  * 4. MAIN FORM SUBMIT HANDLER
  * Called by both the hero form and the optin section form.
