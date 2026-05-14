@@ -1,0 +1,93 @@
+# ════════════════════════════════════════════════════════════════════
+# .gitignore — Files Git Should NEVER Track or Upload
+# ════════════════════════════════════════════════════════════════════
+#
+# Each line tells Git to ignore that file or folder.
+# Ignored files are NEVER uploaded to GitHub — they stay local only.
+#
+# Check what's being ignored: git status
+# Verify a specific file: git check-ignore -v filename
+# ════════════════════════════════════════════════════════════════════
+
+
+# ── SECRET KEYS (Most Critical!) ────────────────────────────────────
+# Your real API keys and secrets — NEVER upload these
+.env
+.env.local
+.env.development
+.env.production
+
+
+# ── NODE MODULES ─────────────────────────────────────────────────────
+# Installed packages — huge folder, never needs to be on GitHub
+# Anyone can recreate it by running: npm install
+node_modules/
+node_modules
+
+
+# ── NETLIFY LOCAL FILES ──────────────────────────────────────────────
+# Netlify CLI creates these locally — not needed on GitHub
+.netlify/
+
+
+# ── OPERATING SYSTEM FILES ──────────────────────────────────────────
+# Mac system files — invisible clutter, not part of your project
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Windows system files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+
+# ── CODE EDITOR FILES ────────────────────────────────────────────────
+# VS Code personal settings — your setup, not project settings
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# JetBrains editors (WebStorm, etc.)
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+
+# ── BUILD & CACHE FILES ──────────────────────────────────────────────
+# Auto-generated files that don't need to be tracked
+dist/
+build/
+.cache/
+*.log
+npm-debug.log*
+
+
+# ── SENSITIVE DOCUMENTS ──────────────────────────────────────────────
+# Any other files you never want on GitHub
+*.pem
+*.key
+*.cert
+*.p12
+
+
+# ════════════════════════════════════════════════════════════════════
+# WHAT IS SAFE TO COMMIT (for reference):
+# ════════════════════════════════════════════════════════════════════
+# ✅ .env.example      (template with NO real values)
+# ✅ netlify.toml      (no secrets here)
+# ✅ All .html files
+# ✅ All .css files
+# ✅ All .js files (subscribe.js uses process.env — no hardcoded keys)
+# ✅ README.md
+# ✅ Images
+# ════════════════════════════════════════════════════════════════════

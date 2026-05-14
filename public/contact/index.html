@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Budget Daily</title>
+    <meta
+      name="description"
+      content="Get in touch with Kenneth Onu at Budget Daily."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=DM+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/shared.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>"
+    />
+    <style>
+      body {
+        background: #f9fafb;
+        padding-top: 80px;
+      }
+      .doc-container {
+        max-width: 620px;
+        margin: 40px auto 80px;
+        background: var(--white);
+        border-radius: var(--radius-md);
+        padding: 48px;
+        box-shadow: var(--shadow-sm);
+        text-align: center;
+      }
+      @media (max-width: 600px) {
+        .doc-container {
+          padding: 32px 24px;
+        }
+      }
+      h1 {
+        font-family: var(--font-heading);
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      p {
+        color: #374151;
+        line-height: 1.75;
+        margin-bottom: 20px;
+      }
+      .contact-email {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--green-pale);
+        border: 1px solid var(--green-mid);
+        border-radius: 50px;
+        padding: 14px 28px;
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--green);
+        text-decoration: none;
+        transition: all 0.25s ease;
+        margin-bottom: 24px;
+      }
+      .contact-email:hover {
+        background: var(--green);
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+      .response-time {
+        font-size: 0.85rem;
+        color: var(--gray);
+        margin-bottom: 0;
+      }
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--gray);
+        text-decoration: none;
+        font-size: 0.875rem;
+        margin-top: 32px;
+      }
+      .back-link:hover {
+        color: var(--green);
+      }
+      .icon-wrap {
+        font-size: 3rem;
+        margin-bottom: 16px;
+      }
+      .topic-list {
+        text-align: left;
+        margin: 20px 0;
+        padding: 0;
+        list-style: none;
+      }
+      .topic-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.9rem;
+        color: #374151;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .topic-list li:last-child {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="/starter-kit" class="nav-logo">💰 Budget<span>Daily</span></a>
+    </nav>
+
+    <div class="doc-container">
+      <div class="icon-wrap">👋</div>
+      <h1>Get in Touch</h1>
+      <p>
+        I read every email personally and love hearing from the Budget Daily
+        community. Whether you have a question, need help, or just want to share
+        your progress — I'm here.
+      </p>
+
+      <!-- Primary contact method -->
+      <a href="mailto:hello@kennethonu.com" class="contact-email">
+        📧 hello@kennethonu.com
+      </a>
+
+      <!-- Common topics -->
+      <p><strong>Common reasons people reach out:</strong></p>
+      <ul class="topic-list">
+        <li>📥 I didn't receive my free Starter Kit</li>
+        <li>📊 I need help setting up my Budget Tracker Spreadsheet</li>
+        <li>💳 I have a question about my purchase</li>
+        <li>💡 I have a suggestion or feedback</li>
+        <li>🤝 Partnership or collaboration inquiry</li>
+      </ul>
+
+      <p class="response-time">
+        ⏱️ I typically respond within <strong>24 hours</strong> on weekdays.
+      </p>
+
+      <a href="/starter-kit" class="back-link">← Back to Budget Daily</a>
+    </div>
+
+    <script src="/assets/js/shared.js"></script>
+  </body>
+</html>

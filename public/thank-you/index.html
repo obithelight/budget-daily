@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>You're In! — Budget Daily</title>
+
+    <!-- ── Prevent search engines indexing this page ── -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- ── Fonts ── -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ── Shared styles ── -->
+    <link rel="stylesheet" href="/assets/css/shared.css" />
+
+    <!-- ── Thank-you page specific styles ── -->
+    <link rel="stylesheet" href="/assets/css/thank-you.css" />
+
+    <!-- ── Emoji Favicon ── -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>"
+    />
+
+    <!--
+    ══════════════════════════════════════════════════════════════
+    SECURITY GATE SCRIPT
+    ══════════════════════════════════════════════════════════════
+    CRITICAL: This MUST be the FIRST script — inside <head>,
+    before any CSS renders or body content appears.
+
+    WHY: If placed at bottom of body, the page would briefly
+    flash visible to unauthorized visitors before redirecting.
+    In <head> = zero flash. Page never appears to gate-jumpers.
+
+    WHAT IT DOES:
+    - Checks sessionStorage for 'bd_gate' === 'unlocked'
+    - Token only exists if user submitted the real form
+    - No token = immediate redirect to /starter-kit
+    - Valid token = remove it (one-time use) + allow page
+    ══════════════════════════════════════════════════════════════
+  -->
+    <script src="/assets/js/thank-you.js"></script>
+  </head>
+  <body>
+    <!-- ════════════════════════════════════════════════════════════
+       MINIMAL NAV (no fixed positioning, no CTA button)
+  ════════════════════════════════════════════════════════════ -->
+    <div class="nav-minimal">
+      <a href="/starter-kit" class="nav-logo">💰 Budget<span>Daily</span></a>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+       MAIN CARD
+  ════════════════════════════════════════════════════════════ -->
+    <div class="card">
+      <!-- ── Top: Check + Headline ── -->
+      <div class="card-top">
+        <!-- Animated green check circle -->
+        <div class="check-wrap a1">
+          <div class="check-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Congratulations badge -->
+        <div class="congrats-badge a2">Congratulations</div>
+
+        <!-- Headline — personalized with name by thank-you.js -->
+        <h1 class="card-headline a2">
+          Check your inbox — your<br />Starter Kit is on the way.
+        </h1>
+
+        <!-- Dynamic email display badge — shown by thank-you.js if email found -->
+        <div class="email-display a3" id="emailDisplay" style="display: none">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="M22 7L12 13 2 7" />
+          </svg>
+          <span id="emailText"></span>
+        </div>
+
+        <!-- Confirmation message -->
+        <p class="card-sub a3">
+          We just sent your <strong>Free Beginner Budget Starter Kit</strong>
+          to the email you signed up with. It usually arrives within a couple of
+          minutes.
+        </p>
+
+        <!-- Email provider buttons — multiple options, not just Gmail -->
+        <div class="email-providers a4">
+          <a
+            href="https://mail.google.com"
+            target="_blank"
+            rel="noopener"
+            class="btn-inbox"
+          >
+            📧 Open Gmail
+          </a>
+          <a
+            href="https://outlook.live.com"
+            target="_blank"
+            rel="noopener"
+            class="btn-inbox"
+            style="background: #0078d4"
+          >
+            📧 Open Outlook
+          </a>
+          <a
+            href="https://mail.yahoo.com"
+            target="_blank"
+            rel="noopener"
+            class="btn-inbox"
+            style="background: #6001d2"
+          >
+            📧 Open Yahoo Mail
+          </a>
+        </div>
+
+        <!-- Subject line hint -->
+        <p class="subject-hint a4">
+          Subject line: "Your Budget Daily Starter Kit is here 🎉"
+        </p>
+      </div>
+      <!-- /card-top -->
+
+      <!-- ── Next steps ── -->
+      <div class="steps-row a4">
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-icon-wrap">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="M22 7L12 13 2 7" />
+              </svg>
+            </div>
+            <span class="step-label">Step 1</span>
+          </div>
+          <p class="step-body">
+            Open your inbox and look for an email from
+            <strong>Kenneth at Budget Daily</strong>
+            (hello@kennethonu.com).
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-icon-wrap">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <span class="step-label">Step 2</span>
+          </div>
+          <p class="step-body">
+            Don't see it within 2–3 minutes? Check your
+            <strong>Promotions</strong> or <strong>Spam</strong> folder.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-header">
+            <div class="step-icon-wrap">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <span class="step-label">Step 3</span>
+          </div>
+          <p class="step-body">
+            Mark it as <strong>"Not spam"</strong> and add us to contacts so
+            future tips land safely.
+          </p>
+        </div>
+      </div>
+      <!-- /steps-row -->
+
+      <!-- ── Pro tip ── -->
+      <div class="tip-row a5">
+        <div class="tip-box">
+          <span class="tip-emoji">💡</span>
+          <p class="tip-text">
+            <strong>Tip:</strong> Open page 3 first — the
+            <strong>Simple Budget Framework</strong>. It's the fastest win in
+            the kit and takes less than 10 minutes to complete.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── Resend section ── -->
+      <div class="resend-section a5">
+        <div class="resend-box">
+          <h3>Still don't see the email?</h3>
+          <p>Tap below and we'll send your Starter Kit again.</p>
+
+          <!-- onclick calls resendEmail() from thank-you.js -->
+          <button class="btn-resend" id="resendBtn" onclick="resendEmail()">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="23 4 23 10 17 10" />
+              <polyline points="1 20 1 14 7 14" />
+              <path
+                d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"
+              />
+            </svg>
+            Resend my Starter Kit email
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- /card -->
+
+    <!-- ════════════════════════════════════════════════════════════
+       WHAT'S INSIDE TEASER
+       Reminds subscriber what's coming in their inbox.
+  ════════════════════════════════════════════════════════════ -->
+    <div class="teaser">
+      <p class="teaser-label">What's waiting in your inbox</p>
+      <div class="teaser-grid">
+        <div class="teaser-item">
+          <div class="teaser-item-icon">📋</div>
+          <div class="teaser-item-name">Budget Planner</div>
+        </div>
+        <div class="teaser-item">
+          <div class="teaser-item-icon">📈</div>
+          <div class="teaser-item-name">Expense Tracker</div>
+        </div>
+        <div class="teaser-item">
+          <div class="teaser-item-icon">💳</div>
+          <div class="teaser-item-name">Debt Payoff Plan</div>
+        </div>
+        <div class="teaser-item">
+          <div class="teaser-item-icon">✅</div>
+          <div class="teaser-item-name">Monthly Checklist</div>
+        </div>
+        <div class="teaser-item">
+          <div class="teaser-item-icon">📖</div>
+          <div class="teaser-item-name">Beginner Guide</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+       BACK HOME LINK
+  ════════════════════════════════════════════════════════════ -->
+    <div class="back-home">
+      <a href="/starter-kit">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
+        </svg>
+        Back to home
+      </a>
+    </div>
+
+    <!--
+    NOTE: thank-you.js is already loaded in <head> (for the gate).
+    shared.js loaded here at bottom for scroll reveal, etc.
+  -->
+    <script src="/assets/js/shared.js"></script>
+  </body>
+</html>

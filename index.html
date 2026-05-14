@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Daily</title>
+
+    <!--
+    ── TEMPORARY HOMEPAGE REDIRECT ─────────────────────────────────
+    Purpose:
+      Until a proper homepage is built for kennethonu.com,
+      ALL root visits are redirected instantly to the landing page.
+
+    To remove later:
+      Delete this file entirely when a real homepage (index.html)
+      is built and placed in the /public folder.
+
+    302 = Temporary redirect (tells Google to re-check this later)
+    301 = Permanent redirect (only use when NEVER going back)
+    ────────────────────────────────────────────────────────────────
+  -->
+
+    <!-- Meta refresh fallback (works even if JavaScript is disabled) -->
+    <meta http-equiv="refresh" content="0; url=/starter-kit" />
+
+    <!-- Canonical tag: tells Google the real page lives at /starter-kit -->
+    <link rel="canonical" href="https://kennethonu.com/starter-kit" />
+  </head>
+  <body>
+    <script>
+      /*
+       * JavaScript redirect (faster than meta refresh above).
+       * window.location.replace() prevents the Back button
+       * from looping back to this redirect page.
+       */
+      window.location.replace("/starter-kit");
+    </script>
+
+    <!--
+    Fallback text:
+    Shown only in the extremely rare case where BOTH
+    JavaScript AND meta-refresh are disabled in the browser.
+  -->
+    <p style="font-family: sans-serif; padding: 40px; text-align: center">
+      Redirecting you to
+      <a href="/starter-kit">Budget Daily</a>...
+    </p>
+  </body>
+</html>

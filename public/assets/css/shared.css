@@ -1,0 +1,444 @@
+/*
+ * ════════════════════════════════════════════════════════════════════
+ * shared.css — Global Styles (used on EVERY page)
+ * ════════════════════════════════════════════════════════════════════
+ * Includes:
+ *   - CSS custom properties (design tokens / variables)
+ *   - Global reset
+ *   - Typography base
+ *   - Shared nav styles
+ *   - Shared footer styles
+ *   - Shared button styles
+ *   - Shared animations
+ *   - Shared utility classes
+ * ════════════════════════════════════════════════════════════════════
+ */
+
+/* ── DESIGN TOKENS (CSS Variables) ─────────────────────────────────
+ * Change a color here → it updates everywhere automatically.
+ * Add new variables here when scaling to new pages/components.
+ * ──────────────────────────────────────────────────────────────── */
+:root {
+  /* Brand Colors */
+  --green: #0f5132; /* Primary — dark forest green */
+  --green-light: #1a7a4a; /* Hover state for green */
+  --green-pale: #e8f5ee; /* Light green background tint */
+  --green-mid: #d0e8d8; /* Medium green for borders */
+
+  /* Accent Colors */
+  --gold: #c8a96b; /* Primary accent — warm gold */
+  --gold-light: #e8d5a8; /* Light gold for backgrounds */
+
+  /* Neutral Colors */
+  --black: #111111; /* Primary text */
+  --white: #ffffff; /* Backgrounds, inverse text */
+  --beige: #f5f1e8; /* Warm off-white background */
+  --beige-dark: #ede8dc; /* Slightly darker beige */
+  --gray: #6b7280; /* Secondary / muted text */
+  --gray-light: #f9fafb; /* Very light gray background */
+  --gray-mid: #f3f4f6; /* Light gray for cards */
+  --border: #e5e7eb; /* Default border color */
+
+  /* Typography */
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+
+  /* Spacing Scale */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 48px;
+  --space-xl: 80px;
+
+  /* Border Radius */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 40px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.12);
+}
+
+/* ── GLOBAL RESET ───────────────────────────────────────────────────
+ * Removes default browser margins, padding, and box model quirks.
+ * ──────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--black);
+  background: var(--white);
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  line-height: 1.6;
+}
+
+/* ── BASE TYPOGRAPHY ────────────────────────────────────────────────
+ * h1–h4 use Poppins; body text uses DM Sans (set on body above).
+ * ──────────────────────────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+/* ── GLOBAL ANIMATIONS ──────────────────────────────────────────────
+ * Defined here so they are available to all pages.
+ * ──────────────────────────────────────────────────────────────── */
+
+/* Element fades up from below */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Simple fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Gentle float — used on dashboard card & badges */
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Gold pulsing ring — used on hero badge dot */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(200, 169, 107, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(200, 169, 107, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(200, 169, 107, 0);
+  }
+}
+
+/* Green pulsing ring — used on check icon */
+@keyframes pulse-green {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(15, 81, 50, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(15, 81, 50, 0);
+  }
+}
+
+/* Loading spinner rotation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pop + slight overshoot — used on check mark icon */
+@keyframes checkPop {
+  0% {
+    transform: scale(0) rotate(-30deg);
+  }
+  70% {
+    transform: scale(1.2) rotate(4deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* ── SCROLL REVEAL UTILITY ──────────────────────────────────────────
+ * Add class "reveal" to any element.
+ * shared.js IntersectionObserver adds "visible" when in viewport.
+ * ──────────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── LAYOUT UTILITIES ───────────────────────────────────────────────
+ * Small helper classes used across multiple pages.
+ * ──────────────────────────────────────────────────────────────── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center .section-sub {
+  margin: 0 auto;
+}
+
+/* ── SECTION SHARED STYLES ──────────────────────────────────────────
+ * Base styles for every content section.
+ * ──────────────────────────────────────────────────────────────── */
+section {
+  padding: var(--space-xl) var(--space-md);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.section-sub {
+  font-size: 1.05rem;
+  color: #4b5563;
+  max-width: 580px;
+  line-height: 1.75;
+}
+
+/* ── SHARED NAV ─────────────────────────────────────────────────────
+ * Top navigation bar — same on all pages.
+ * ──────────────────────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  /* gap: 8px; */
+  text-decoration: none;
+}
+
+/* The "Daily" part of "BudgetDaily" renders in gold */
+.nav-logo span {
+  color: var(--gold);
+}
+
+/* CTA button in nav — hidden on mobile, shown on tablet+ */
+.nav-cta {
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 22px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: none; /* hidden on mobile */
+}
+
+.nav-cta:hover {
+  background: var(--green-light);
+  transform: translateY(-1px);
+}
+
+/* Show nav CTA on tablet and above */
+@media (min-width: 768px) {
+  .nav-cta {
+    display: inline-block;
+  }
+}
+
+/* ── SHARED BUTTONS ─────────────────────────────────────────────────
+ * Base button styles shared across pages.
+ * Page-specific sizing overrides live in page CSS files.
+ * ──────────────────────────────────────────────────────────────── */
+
+/* Primary — dark green */
+.btn-primary {
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 18px 32px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--green-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(15, 81, 50, 0.3);
+}
+
+.btn-primary svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Gold — warm gold accent */
+.btn-gold {
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 20px 36px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-gold:hover {
+  background: #d4b87a;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(200, 169, 107, 0.5);
+}
+
+/* ── SHARED FOOTER ──────────────────────────────────────────────────
+ * Identical footer used on every page.
+ * ──────────────────────────────────────────────────────────────── */
+.footer {
+  background: var(--black);
+  padding: 40px var(--space-md);
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.footer-logo span {
+  color: var(--gold);
+}
+
+.footer-tagline {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+/* Footer navigation links */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-links a {
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--gold);
+}
+
+/* Legal disclaimer at very bottom */
+.footer-legal {
+  font-size: 0.7rem;
+  color: #4b5563;
+}
+
+/* ── TRUST BAR ──────────────────────────────────────────────────────
+ * Green strip below nav with quick trust signals.
+ * ──────────────────────────────────────────────────────────────── */
+.trust-bar {
+  background: var(--green);
+  padding: 12px var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 75px; /* Offset for fixed nav height */
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── MOBILE BOTTOM PADDING ──────────────────────────────────────────
+ * Prevents sticky CTA from covering page content on mobile.
+ * ──────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 80px;
+  }
+}

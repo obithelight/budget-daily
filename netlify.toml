@@ -1,0 +1,118 @@
+# ════════════════════════════════════════════════════════════════════
+# netlify.toml — Netlify site configuration
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+# ════════════════════════════════════════════════════════════════════
+
+
+# ── BUILD SETTINGS ───────────────────────────────────────────────────
+[build]
+  # Where Netlify looks for serverless function files
+  functions = "netlify/functions"
+
+  # The folder Netlify serves as the website root
+  publish = "public"
+
+
+# ════════════════════════════════════════════════════════════════════
+# REDIRECTS
+# Order matters — Netlify reads from top to bottom
+# status 200 = serve this file at this URL (no URL change)
+# status 301 = permanent redirect (browser URL changes)
+# status 302 = temporary redirect (browser URL changes)
+# ════════════════════════════════════════════════════════════════════
+
+# ── Redirect: www → non-www (permanent, canonical) ─────────────────
+[[redirects]]
+  from   = "https://www.kennethonu.com/*"
+  to     = "https://kennethonu.com/:splat"
+  status = 301
+  force  = true
+
+# ── Redirect: root → landing page (TEMPORARY — remove when homepage built) ──
+[[redirects]]
+  from   = "/"
+  to     = "/starter-kit"
+  status = 302
+  force  = true
+
+# ── Clean URLs: /starter-kit → starter-kit/index.html ─────────────
+[[redirects]]
+  from   = "/starter-kit"
+  to     = "/starter-kit/index.html"
+  status = 200
+
+# ── Clean URLs: /thank-you → thank-you/index.html ─────────────────
+[[redirects]]
+  from   = "/thank-you"
+  to     = "/thank-you/index.html"
+  status = 200
+
+# ── Clean URLs: /privacy → privacy/index.html ─────────────────────
+[[redirects]]
+  from   = "/privacy"
+  to     = "/privacy/index.html"
+  status = 200
+
+# ── Clean URLs: /terms → terms/index.html ─────────────────────────
+[[redirects]]
+  from   = "/terms"
+  to     = "/terms/index.html"
+  status = 200
+
+# ── Clean URLs: /contact → contact/index.html ─────────────────────
+[[redirects]]
+  from   = "/contact"
+  to     = "/contact/index.html"
+  status = 200
+
+# ── Clean URLs: /unsubscribe → unsubscribe/index.html ─────────────
+[[redirects]]
+  from   = "/unsubscribe"
+  to     = "/unsubscribe/index.html"
+  status = 200
+
+
+# ════════════════════════════════════════════════════════════════════
+# SECURITY HEADERS
+# Applied to every page on the site
+# ════════════════════════════════════════════════════════════════════
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent site from being embedded in iframes (clickjacking protection)
+    X-Frame-Options        = "DENY"
+
+    # Block XSS attacks in older browsers
+    X-XSS-Protection       = "1; mode=block"
+
+    # Prevent MIME-type sniffing
+    X-Content-Type-Options = "nosniff"
+
+    # Control how much referrer info is sent with requests
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+
+
+# ════════════════════════════════════════════════════════════════════
+# CACHE HEADERS
+# Tells browsers how long to cache static files
+# immutable = file never changes (use only for versioned assets)
+# ════════════════════════════════════════════════════════════════════
+
+# Cache images for 1 year (they rarely change)
+[[headers]]
+  for = "/assets/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache CSS for 1 week (changes occasionally)
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Cache JS for 1 week (changes occasionally)
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

@@ -1,0 +1,465 @@
+/*
+ * ════════════════════════════════════════════════════════════════════
+ * thank-you.css — Thank-You Page Styles ONLY
+ * ════════════════════════════════════════════════════════════════════
+ * Depends on: shared.css (must be loaded first in HTML)
+ * Page: /thank-you (gate-protected)
+ * ════════════════════════════════════════════════════════════════════
+ */
+
+/* ── PAGE LAYOUT ────────────────────────────────────────────────── */
+body {
+  background: var(--gray-mid);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 24px 16px 60px;
+}
+
+/* ── ANIMATION DELAY CLASSES ────────────────────────────────────── */
+/* Applied to elements to stagger their entrance animations */
+.a1 {
+  animation: fadeUp 0.55s 0.05s ease both;
+}
+.a2 {
+  animation: fadeUp 0.55s 0.15s ease both;
+}
+.a3 {
+  animation: fadeUp 0.55s 0.28s ease both;
+}
+.a4 {
+  animation: fadeUp 0.55s 0.4s ease both;
+}
+.a5 {
+  animation: fadeUp 0.55s 0.52s ease both;
+}
+.a6 {
+  animation: fadeUp 0.55s 0.64s ease both;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── MINIMAL NAV (no CTA button) ────────────────────────────────── */
+.nav-minimal {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0 24px;
+  animation: fadeUp 0.4s ease both;
+  /* Not fixed — scrolls with page on this page */
+  position: static;
+  background: none;
+  border-bottom: none;
+}
+
+/* ── MAIN CARD ──────────────────────────────────────────────────── */
+.card {
+  width: 100%;
+  max-width: 680px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 4px 32px rgba(0, 0, 0, 0.07),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  animation: scaleIn 0.5s ease both;
+}
+
+/* ── CARD TOP ────────────────────────────────────────────────────── */
+.card-top {
+  padding: 52px 48px 40px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+@media (max-width: 540px) {
+  .card-top {
+    padding: 40px 24px 32px;
+  }
+}
+
+/* Animated check circle */
+.check-wrap {
+  width: 72px;
+  height: 72px;
+  background: var(--green-pale);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  animation: pulse-green 2.4s 1s infinite;
+}
+
+.check-icon {
+  width: 34px;
+  height: 34px;
+  border: 2.5px solid var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: checkPop 0.6s 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.check-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--green);
+}
+
+/* Congratulations pill badge */
+.congrats-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--beige-dark);
+  border-radius: 50px;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #92714a;
+  margin-bottom: 18px;
+  animation: fadeUp 0.5s 0.2s ease both;
+}
+
+/* Animated dot inside badge */
+.congrats-badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse-ring 2s infinite;
+}
+
+.card-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 5vw, 2.1rem);
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.card-sub {
+  font-size: 1rem;
+  color: var(--gray);
+  line-height: 1.7;
+  max-width: 440px;
+  margin: 0 auto 28px;
+}
+
+.card-sub strong {
+  color: var(--black);
+}
+
+/* Dynamic email display pill */
+.email-display {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-pale);
+  border: 1px solid var(--green-mid);
+  border-radius: 50px;
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.email-display svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ── EMAIL PROVIDER BUTTONS ─────────────────────────────────────── */
+.email-providers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.btn-inbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-inbox:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(15, 81, 50, 0.3);
+  filter: brightness(1.1);
+}
+
+.subject-hint {
+  font-size: 0.78rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* ── NEXT STEPS ─────────────────────────────────────────────────── */
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 32px 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+@media (max-width: 540px) {
+  .steps-row {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+  }
+}
+
+.step-card {
+  background: var(--gray-mid);
+  border-radius: 16px;
+  padding: 18px 14px;
+  text-align: left;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.step-icon-wrap {
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--white);
+}
+
+.step-icon-wrap svg {
+  width: 13px;
+  height: 13px;
+  color: var(--green);
+}
+.step-label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.step-body {
+  font-size: 0.82rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+.step-body strong {
+  color: var(--black);
+}
+
+/* ── TIP BOX ────────────────────────────────────────────────────── */
+.tip-row {
+  padding: 0 40px;
+}
+
+@media (max-width: 540px) {
+  .tip-row {
+    padding: 0 20px;
+  }
+}
+
+.tip-box {
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 20px 0 24px;
+  background: var(--white);
+}
+
+.tip-emoji {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+.tip-text {
+  font-size: 0.875rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+.tip-text strong {
+  color: var(--black);
+}
+
+/* ── RESEND BOX ─────────────────────────────────────────────────── */
+.resend-section {
+  padding: 0 40px 40px;
+}
+
+@media (max-width: 540px) {
+  .resend-section {
+    padding: 0 20px 32px;
+  }
+}
+
+.resend-box {
+  background: var(--gray-mid);
+  border-radius: 18px;
+  padding: 28px 28px 24px;
+  text-align: center;
+}
+
+.resend-box h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+.resend-box p {
+  font-size: 0.875rem;
+  color: var(--gray);
+  margin-bottom: 18px;
+}
+
+.btn-resend {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  padding: 14px 28px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-resend:hover {
+  background: var(--green-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(15, 81, 50, 0.25);
+}
+
+.btn-resend svg {
+  width: 16px;
+  height: 16px;
+}
+.btn-resend.sent {
+  background: #22c55e;
+  cursor: default;
+}
+
+/* Resend error message */
+.__resend-error {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
+
+/* ── WHAT'S INSIDE TEASER ───────────────────────────────────────── */
+.teaser {
+  width: 100%;
+  max-width: 680px;
+  margin-top: 20px;
+  animation: fadeUp 0.6s 0.5s ease both;
+}
+
+.teaser-label {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.teaser-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 12px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.teaser-item:hover {
+  border-color: var(--green);
+  transform: translateY(-2px);
+}
+
+.teaser-item-icon {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+.teaser-item-name {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* ── BACK HOME LINK ─────────────────────────────────────────────── */
+.back-home {
+  margin-top: 28px;
+  text-align: center;
+  animation: fadeUp 0.5s 0.7s ease both;
+}
+
+.back-home a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gray);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.back-home a:hover {
+  color: var(--green);
+}
+.back-home svg {
+  width: 14px;
+  height: 14px;
+}
