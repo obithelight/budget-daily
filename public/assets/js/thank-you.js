@@ -4,7 +4,7 @@
  * ════════════════════════════════════════════════════════════════════
  * Handles:
  *   - Security gate check (MUST run before page renders!)
- *   - Dynamic headline personalisation with subscriber's name
+ *   - Dynamic headline personalization with subscriber's name
  *   - Dynamic email display in the green badge
  *   - Resend email button (calls Netlify function again)
  *   - Error display helpers
@@ -34,7 +34,7 @@
 (function securityGate() {
   var gate = sessionStorage.getItem("bd_gate");
 
-  /* ── UNAUTHORISED: bounce visitor back to landing page ── */
+  /* ── UNAUTHORIZED: bounce visitor back to landing page ── */
   if (gate !== "unlocked") {
     /*
      * window.location.replace() instead of .href:
@@ -46,7 +46,7 @@
     /*
      * Stop rendering immediately.
      * This runs before DOMContentLoaded so the page
-     * never visually appears to the unauthorised visitor.
+     * never visually appears to the unauthorized visitor.
      */
     document.addEventListener("DOMContentLoaded", function () {
       document.body.innerHTML = "";
@@ -55,7 +55,7 @@
     return; /* Exit function immediately */
   }
 
-  /* ── AUTHORISED: remove gate token (one-time use only) ── */
+  /* ── AUTHORIZED: remove gate token (one-time use only) ── */
   /*
    * We remove 'bd_gate' so refreshing the thank-you page
    * will also bounce the visitor back (intentional — they
@@ -67,7 +67,7 @@
 })(); /* IIFE — runs immediately, not waiting for DOM */
 
 /* ══════════════════════════════════════════════════════════════════
- * 2. PERSONALISE PAGE CONTENT
+ * 2. PERSONALIZE PAGE CONTENT
  * Reads name + email from URL params (set by landing page redirect)
  * with sessionStorage as fallback.
  * Runs after DOM is fully loaded.
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (emailDisplayEl) emailDisplayEl.style.display = "inline-flex";
   }
 
-  /* ── Personalise headline with first name ── */
+  /* ── Personalize headline with first name ── */
   if (name) {
     var firstName = name.split(" ")[0]; /* Use first name only */
     var headlineEl = document.querySelector(".card-headline");

@@ -5,62 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>You're In! — Budget Daily</title>
 
-    <!-- ── Prevent search engines indexing this page ── -->
     <meta name="robots" content="noindex, nofollow" />
 
-    <!-- ── Fonts ── -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
 
-    <!-- ── Shared styles ── -->
     <link rel="stylesheet" href="/assets/css/shared.css" />
-
-    <!-- ── Thank-you page specific styles ── -->
     <link rel="stylesheet" href="/assets/css/thank-you.css" />
 
-    <!-- ── Emoji Favicon ── -->
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>"
     />
 
-    <!--
-    ══════════════════════════════════════════════════════════════
-    SECURITY GATE SCRIPT
-    ══════════════════════════════════════════════════════════════
-    CRITICAL: This MUST be the FIRST script — inside <head>,
-    before any CSS renders or body content appears.
-
-    WHY: If placed at bottom of body, the page would briefly
-    flash visible to unauthorized visitors before redirecting.
-    In <head> = zero flash. Page never appears to gate-jumpers.
-
-    WHAT IT DOES:
-    - Checks sessionStorage for 'bd_gate' === 'unlocked'
-    - Token only exists if user submitted the real form
-    - No token = immediate redirect to /starter-kit
-    - Valid token = remove it (one-time use) + allow page
-    ══════════════════════════════════════════════════════════════
-  -->
+    <!-- SECURITY GATE — Must be first script in <head> -->
     <script src="/assets/js/thank-you.js"></script>
   </head>
+
   <body>
-    <!-- ════════════════════════════════════════════════════════════
-       MINIMAL NAV (no fixed positioning, no CTA button)
-  ════════════════════════════════════════════════════════════ -->
+    <!-- ══ MINIMAL NAV ══════════════════════════════════════════ -->
     <div class="nav-minimal">
       <a href="/starter-kit" class="nav-logo">💰 Budget<span>Daily</span></a>
     </div>
 
-    <!-- ════════════════════════════════════════════════════════════
-       MAIN CARD
-  ════════════════════════════════════════════════════════════ -->
+    <!-- ══ MAIN CARD ════════════════════════════════════════════ -->
     <div class="card">
-      <!-- ── Top: Check + Headline ── -->
+      <!-- ── Card Top: Check + Headline ── -->
       <div class="card-top">
-        <!-- Animated green check circle -->
+        <!-- Animated green check -->
         <div class="check-wrap a1">
           <div class="check-icon">
             <svg
@@ -76,15 +50,15 @@
           </div>
         </div>
 
-        <!-- Congratulations badge -->
+        <!-- Badge -->
         <div class="congrats-badge a2">Congratulations</div>
 
-        <!-- Headline — personalized with name by thank-you.js -->
+        <!-- Headline — personalized by thank-you.js -->
         <h1 class="card-headline a2">
-          Check your inbox — your<br />Starter Kit is on the way.
+          Check your inbox &mdash;<br />your FREE Starter Kit is on the way.
         </h1>
 
-        <!-- Dynamic email display badge — shown by thank-you.js if email found -->
+        <!-- Dynamic email badge -->
         <div class="email-display a3" id="emailDisplay" style="display: none">
           <svg
             viewBox="0 0 24 24"
@@ -102,49 +76,26 @@
 
         <!-- Confirmation message -->
         <p class="card-sub a3">
-          We just sent your <strong>Free Beginner Budget Starter Kit</strong>
-          to the email you signed up with. It usually arrives within a couple of
-          minutes.
+          We just sent your
+          <strong>FREE Budget &amp; Debt-Payoff Starter Kit</strong>
+          to your email. It usually arrives within a couple of minutes.
         </p>
 
-        <!-- Email provider buttons — multiple options, not just Gmail -->
-        <div class="email-providers a4">
-          <a
-            href="https://mail.google.com"
-            target="_blank"
-            rel="noopener"
-            class="btn-inbox"
-          >
-            📧 Open Gmail
-          </a>
-          <a
-            href="https://outlook.live.com"
-            target="_blank"
-            rel="noopener"
-            class="btn-inbox"
-            style="background: #0078d4"
-          >
-            📧 Open Outlook
-          </a>
-          <a
-            href="https://mail.yahoo.com"
-            target="_blank"
-            rel="noopener"
-            class="btn-inbox"
-            style="background: #6001d2"
-          >
-            📧 Open Yahoo Mail
-          </a>
-        </div>
+        <!-- Promotions tip -->
+        <p class="card-sub card-sub--tight a3">
+          Not found? Check your <strong>Spam</strong> or
+          <strong>Promotions</strong> folder and move the mail to your
+          <strong>Primary Inbox</strong>. ✅
+        </p>
 
-        <!-- Subject line hint -->
+        <!-- Subject hint -->
         <p class="subject-hint a4">
-          Subject line: "Your Budget Daily Starter Kit is here 🎉"
+          Subject line: "Your Budget &amp; Debt-Payoff Guide is here 🎉"
         </p>
       </div>
       <!-- /card-top -->
 
-      <!-- ── Next steps ── -->
+      <!-- ── Next Steps ── -->
       <div class="steps-row a4">
         <div class="step-card">
           <div class="step-header">
@@ -165,8 +116,7 @@
           </div>
           <p class="step-body">
             Open your inbox and look for an email from
-            <strong>Kenneth at Budget Daily</strong>
-            (hello@kennethonu.com).
+            <strong>Kenneth</strong> (hello@kennethonu.com).
           </p>
         </div>
 
@@ -189,7 +139,7 @@
           </div>
           <p class="step-body">
             Don't see it within 2–3 minutes? Check your
-            <strong>Promotions</strong> or <strong>Spam</strong> folder.
+            <strong>Promotions</strong> or <strong>Spam</strong> tab.
           </p>
         </div>
 
@@ -210,14 +160,14 @@
             <span class="step-label">Step 3</span>
           </div>
           <p class="step-body">
-            Mark it as <strong>"Not spam"</strong> and add us to contacts so
-            future tips land safely.
+            Mark it <strong>"Not spam"</strong> and add us to contacts so future
+            tips always land safely.
           </p>
         </div>
       </div>
       <!-- /steps-row -->
 
-      <!-- ── Pro tip ── -->
+      <!-- ── Pro Tip ── -->
       <div class="tip-row a5">
         <div class="tip-box">
           <span class="tip-emoji">💡</span>
@@ -229,13 +179,11 @@
         </div>
       </div>
 
-      <!-- ── Resend section ── -->
+      <!-- ── Resend ── -->
       <div class="resend-section a5">
         <div class="resend-box">
           <h3>Still don't see the email?</h3>
           <p>Tap below and we'll send your Starter Kit again.</p>
-
-          <!-- onclick calls resendEmail() from thank-you.js -->
           <button class="btn-resend" id="resendBtn" onclick="resendEmail()">
             <svg
               viewBox="0 0 24 24"
@@ -258,39 +206,72 @@
     </div>
     <!-- /card -->
 
-    <!-- ════════════════════════════════════════════════════════════
-       WHAT'S INSIDE TEASER
-       Reminds subscriber what's coming in their inbox.
-  ════════════════════════════════════════════════════════════ -->
-    <div class="teaser">
+    <!-- ══ WHAT'S INSIDE TEASER ══════════════════════════════════ -->
+    <div class="teaser a6">
       <p class="teaser-label">What's waiting in your inbox</p>
       <div class="teaser-grid">
-        <div class="teaser-item">
+        <!-- ── Row 1 (all screens) ── -->
+        <!-- <div class="teaser-item">
           <div class="teaser-item-icon">📋</div>
           <div class="teaser-item-name">Budget Planner</div>
-        </div>
-        <div class="teaser-item">
-          <div class="teaser-item-icon">📈</div>
-          <div class="teaser-item-name">Expense Tracker</div>
-        </div>
-        <div class="teaser-item">
-          <div class="teaser-item-icon">💳</div>
-          <div class="teaser-item-name">Debt Payoff Plan</div>
-        </div>
-        <div class="teaser-item">
-          <div class="teaser-item-icon">✅</div>
-          <div class="teaser-item-name">Monthly Checklist</div>
-        </div>
+        </div> -->
         <div class="teaser-item">
           <div class="teaser-item-icon">📖</div>
           <div class="teaser-item-name">Beginner Guide</div>
         </div>
-      </div>
-    </div>
 
-    <!-- ════════════════════════════════════════════════════════════
-       BACK HOME LINK
-  ════════════════════════════════════════════════════════════ -->
+        <div class="teaser-item">
+          <div class="teaser-item-icon">📈</div>
+          <div class="teaser-item-name">Expense Tracker</div>
+        </div>
+
+        <div class="teaser-item">
+          <div class="teaser-item-icon">💳</div>
+          <div class="teaser-item-name">Debt Payoff Plan</div>
+        </div>
+
+        <div class="teaser-item">
+          <div class="teaser-item-icon">✅</div>
+          <div class="teaser-item-name">Monthly Checklist</div>
+        </div>
+
+        <!-- ── Row 2 (all screens) ── -->
+        <!-- <div class="teaser-item">
+          <div class="teaser-item-icon">📖</div>
+          <div class="teaser-item-name">Beginner Guide</div>
+        </div> -->
+        <div class="teaser-item">
+          <div class="teaser-item-icon">📋</div>
+          <div class="teaser-item-name">Budget Planner</div>
+        </div>
+
+        <!--
+          Hidden on mobile (≤540px).
+          Visible on tablet + desktop.
+        -->
+        <div class="teaser-item teaser-hide-mobile">
+          <div class="teaser-item-icon">💵</div>
+          <div class="teaser-item-name">Transactions</div>
+        </div>
+
+        <div class="teaser-item teaser-hide-mobile">
+          <div class="teaser-item-icon">📅</div>
+          <div class="teaser-item-name">Bill Calendar</div>
+        </div>
+
+        <!--
+          Shown on ALL screens (mobile gets this as its 6th box).
+        -->
+        <div class="teaser-item">
+          <div class="teaser-item-icon">📊</div>
+          <div class="teaser-item-name">Annual Summary</div>
+        </div>
+      </div>
+      <!-- /teaser-grid -->
+    </div>
+    <!-- /teaser -->
+
+    <!-- ══ BACK HOME ═════════════════════════════════════════════ -->
     <div class="back-home">
       <a href="/starter-kit">
         <svg
@@ -308,10 +289,6 @@
       </a>
     </div>
 
-    <!--
-    NOTE: thank-you.js is already loaded in <head> (for the gate).
-    shared.js loaded here at bottom for scroll reveal, etc.
-  -->
     <script src="/assets/js/shared.js"></script>
   </body>
 </html>
