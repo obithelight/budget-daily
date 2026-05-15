@@ -294,8 +294,7 @@
 .badge-dot.green {
   background: #22c55e;
 }
-.badge-dot.gold,
-.right {
+.badge-dot.gold {
   background: var(--gold);
 }
 

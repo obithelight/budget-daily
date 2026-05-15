@@ -221,12 +221,12 @@ section {
   display: flex;
   align-items: center;
   text-decoration: none;
-  letter-spacing: -0.5px;
+  /* letter-spacing: -0.5px; */
 }
 
-/* "Daily" part = gold */
+/* "Right" part = gold */
 .nav-logo span,
-.daily {
+.right {
   color: var(--gold);
 }
 
