@@ -419,7 +419,7 @@ section {
   text-align: center;
 }
 
-/* Logo: "Budget" = white, "Daily" = gold via <span> */
+/* Logo: "Budget" = white, "Right" = gold via <span> */
 .footer-logo {
   font-family: var(--font-heading);
   font-weight: 800;
@@ -432,6 +432,7 @@ section {
   letter-spacing: -0.5px;
 }
 
+.right,
 .footer-logo span {
   color: var(--gold);
 }
