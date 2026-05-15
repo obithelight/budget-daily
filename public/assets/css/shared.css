@@ -225,8 +225,7 @@ section {
 }
 
 /* "Right" part = gold */
-.nav-logo span,
-.right {
+.nav-logo span {
   color: var(--gold);
 }
 
