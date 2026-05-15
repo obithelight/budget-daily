@@ -2,68 +2,40 @@
  * ════════════════════════════════════════════════════════════════════
  * shared.css — Global Styles (used on EVERY page)
  * ════════════════════════════════════════════════════════════════════
- * Includes:
- *   - CSS custom properties (design tokens / variables)
- *   - Global reset
- *   - Typography base
- *   - Shared nav styles
- *   - Shared footer styles
- *   - Shared button styles
- *   - Shared animations
- *   - Shared utility classes
- * ════════════════════════════════════════════════════════════════════
  */
 
-/* ── DESIGN TOKENS (CSS Variables) ─────────────────────────────────
- * Change a color here → it updates everywhere automatically.
- * Add new variables here when scaling to new pages/components.
- * ──────────────────────────────────────────────────────────────── */
+/* ── DESIGN TOKENS ──────────────────────────────────────────────── */
 :root {
-  /* Brand Colors */
-  --green: #0f5132; /* Primary — dark forest green */
-  --green-light: #1a7a4a; /* Hover state for green */
-  --green-pale: #e8f5ee; /* Light green background tint */
-  --green-mid: #d0e8d8; /* Medium green for borders */
-
-  /* Accent Colors */
-  --gold: #c8a96b; /* Primary accent — warm gold */
-  --gold-light: #e8d5a8; /* Light gold for backgrounds */
-
-  /* Neutral Colors */
-  --black: #111111; /* Primary text */
-  --white: #ffffff; /* Backgrounds, inverse text */
-  --beige: #f5f1e8; /* Warm off-white background */
-  --beige-dark: #ede8dc; /* Slightly darker beige */
-  --gray: #6b7280; /* Secondary / muted text */
-  --gray-light: #f9fafb; /* Very light gray background */
-  --gray-mid: #f3f4f6; /* Light gray for cards */
-  --border: #e5e7eb; /* Default border color */
-
-  /* Typography */
+  --green: #0f5132;
+  --green-light: #1a7a4a;
+  --green-pale: #e8f5ee;
+  --green-mid: #d0e8d8;
+  --gold: #c8a96b;
+  --gold-light: #e8d5a8;
+  --black: #111111;
+  --white: #ffffff;
+  --beige: #f5f1e8;
+  --beige-dark: #ede8dc;
+  --gray: #6b7280;
+  --gray-light: #f9fafb;
+  --gray-mid: #f3f4f6;
+  --border: #e5e7eb;
   --font-heading: "Poppins", sans-serif;
   --font-body: "DM Sans", sans-serif;
-
-  /* Spacing Scale */
   --space-xs: 8px;
   --space-sm: 16px;
   --space-md: 24px;
   --space-lg: 48px;
   --space-xl: 80px;
-
-  /* Border Radius */
   --radius-sm: 12px;
   --radius-md: 20px;
   --radius-lg: 28px;
-
-  /* Shadows */
   --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 8px 40px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.12);
 }
 
-/* ── GLOBAL RESET ───────────────────────────────────────────────────
- * Removes default browser margins, padding, and box model quirks.
- * ──────────────────────────────────────────────────────────────── */
+/* ── GLOBAL RESET ───────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
@@ -73,20 +45,17 @@
 }
 
 html {
-  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-body);
   color: var(--black);
   background: var(--white);
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
   line-height: 1.6;
 }
 
-/* ── BASE TYPOGRAPHY ────────────────────────────────────────────────
- * h1–h4 use Poppins; body text uses DM Sans (set on body above).
- * ──────────────────────────────────────────────────────────────── */
 h1,
 h2,
 h3,
@@ -95,11 +64,7 @@ h4 {
   line-height: 1.2;
 }
 
-/* ── GLOBAL ANIMATIONS ──────────────────────────────────────────────
- * Defined here so they are available to all pages.
- * ──────────────────────────────────────────────────────────────── */
-
-/* Element fades up from below */
+/* ── GLOBAL ANIMATIONS ──────────────────────────────────────────── */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -111,7 +76,6 @@ h4 {
   }
 }
 
-/* Simple fade in */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -121,7 +85,6 @@ h4 {
   }
 }
 
-/* Gentle float — used on dashboard card & badges */
 @keyframes floatY {
   0%,
   100% {
@@ -132,7 +95,6 @@ h4 {
   }
 }
 
-/* Gold pulsing ring — used on hero badge dot */
 @keyframes pulse-ring {
   0% {
     box-shadow: 0 0 0 0 rgba(200, 169, 107, 0.4);
@@ -145,7 +107,6 @@ h4 {
   }
 }
 
-/* Green pulsing ring — used on check icon */
 @keyframes pulse-green {
   0%,
   100% {
@@ -156,14 +117,12 @@ h4 {
   }
 }
 
-/* Loading spinner rotation */
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-/* Pop + slight overshoot — used on check mark icon */
 @keyframes checkPop {
   0% {
     transform: scale(0) rotate(-30deg);
@@ -176,10 +135,17 @@ h4 {
   }
 }
 
-/* ── SCROLL REVEAL UTILITY ──────────────────────────────────────────
- * Add class "reveal" to any element.
- * shared.js IntersectionObserver adds "visible" when in viewport.
- * ──────────────────────────────────────────────────────────────── */
+/* ── TRUST BAR MARQUEE ANIMATION ──────────────────────────────────── */
+@keyframes marquee-ltr {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* ── SCROLL REVEAL ──────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -187,31 +153,24 @@ h4 {
     opacity 0.65s ease,
     transform 0.65s ease;
 }
-
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── LAYOUT UTILITIES ───────────────────────────────────────────────
- * Small helper classes used across multiple pages.
- * ──────────────────────────────────────────────────────────────── */
+/* ── LAYOUT UTILITIES ───────────────────────────────────────────── */
 .container {
   max-width: 1100px;
   margin: 0 auto;
 }
-
 .text-center {
   text-align: center;
 }
-
 .text-center .section-sub {
   margin: 0 auto;
 }
 
-/* ── SECTION SHARED STYLES ──────────────────────────────────────────
- * Base styles for every content section.
- * ──────────────────────────────────────────────────────────────── */
+/* ── SECTION SHARED STYLES ──────────────────────────────────────── */
 section {
   padding: var(--space-xl) var(--space-md);
 }
@@ -238,19 +197,17 @@ section {
   line-height: 1.75;
 }
 
-/* ── SHARED NAV ─────────────────────────────────────────────────────
- * Top navigation bar — same on all pages.
- * ──────────────────────────────────────────────────────────────── */
+/* ── SHARED NAV ─────────────────────────────────────────────────── */
 .nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  padding: 16px var(--space-md);
+  padding: 14px var(--space-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -260,19 +217,19 @@ section {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.25rem;
-  color: var(--green);
+  color: var(--green); /* "Budget" = green */
   display: flex;
   align-items: center;
-  /* gap: 8px; */
   text-decoration: none;
+  letter-spacing: -0.5px;
 }
 
-/* The "Daily" part of "BudgetDaily" renders in gold */
-.nav-logo span {
+/* "Daily" part = gold */
+.nav-logo span,
+.daily {
   color: var(--gold);
 }
 
-/* CTA button in nav — hidden on mobile, shown on tablet+ */
 .nav-cta {
   background: var(--green);
   color: var(--white);
@@ -285,7 +242,7 @@ section {
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s ease;
-  display: none; /* hidden on mobile */
+  display: none;
 }
 
 .nav-cta:hover {
@@ -293,19 +250,13 @@ section {
   transform: translateY(-1px);
 }
 
-/* Show nav CTA on tablet and above */
 @media (min-width: 768px) {
   .nav-cta {
     display: inline-block;
   }
 }
 
-/* ── SHARED BUTTONS ─────────────────────────────────────────────────
- * Base button styles shared across pages.
- * Page-specific sizing overrides live in page CSS files.
- * ──────────────────────────────────────────────────────────────── */
-
-/* Primary — dark green */
+/* ── SHARED BUTTONS ─────────────────────────────────────────────── */
 .btn-primary {
   background: var(--green);
   color: var(--white);
@@ -333,9 +284,9 @@ section {
 .btn-primary svg {
   width: 18px;
   height: 18px;
+  flex-shrink: 0;
 }
 
-/* Gold — warm gold accent */
 .btn-gold {
   background: var(--gold);
   color: var(--black);
@@ -359,84 +310,177 @@ section {
   box-shadow: 0 14px 40px rgba(200, 169, 107, 0.5);
 }
 
-/* ── SHARED FOOTER ──────────────────────────────────────────────────
- * Identical footer used on every page.
- * ──────────────────────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * TRUST BAR — Scrolling Marquee (all screen sizes)
+ * ════════════════════════════════════════════════════════════════════ */
+.trust-bar {
+  background: var(--green);
+  overflow: hidden;
+  margin-top: 65px;
+  padding: 0;
+  white-space: nowrap;
+  position: relative;
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* Fade edges */
+.trust-bar::before,
+.trust-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.trust-bar::before {
+  left: 0;
+  background: linear-gradient(to right, var(--green), transparent);
+}
+.trust-bar::after {
+  right: 0;
+  background: linear-gradient(to left, var(--green), transparent);
+}
+
+/* Moving track */
+.trust-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  animation: marquee-ltr 28s linear infinite;
+  will-change: transform;
+}
+
+.trust-bar:hover .trust-track {
+  animation-play-state: paused;
+}
+
+.trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 32px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  white-space: nowrap;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  height: 44px;
+}
+.trust-item:last-child {
+  border-right: none;
+}
+.trust-item-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ── SHARED FOOTER ──────────────────────────────────────────────── */
 .footer {
   background: var(--black);
-  padding: 40px var(--space-md);
+  padding: 32px var(--space-md) 24px;
+}
+
+.footer-inner {
+  max-width: 680px;
+  margin: 0 auto;
   text-align: center;
 }
 
+/* Logo: "Budget" = white, "Daily" = gold */
 .footer-logo {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--white);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.5px;
 }
-
 .footer-logo span {
   color: var(--gold);
 }
 
+/* Tagline — more prominent */
 .footer-tagline {
-  font-size: 0.8rem;
-  color: #6b7280;
+  font-size: 0.85rem;
+  color: #9ca3af;
   margin-bottom: 16px;
+  line-height: 1.55;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Footer navigation links */
+/* Footer links — smaller and fainter */
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: 24px;
+  align-items: center;
+  gap: 6px 12px;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
-
 .footer-links a {
-  font-size: 0.8rem;
-  color: #6b7280;
+  font-size: 0.72rem;
+  color: #4b5563;
   text-decoration: none;
   transition: color 0.2s ease;
+  padding: 2px 0;
 }
-
 .footer-links a:hover {
   color: var(--gold);
 }
 
-/* Legal disclaimer at very bottom */
+.footer-links .sep {
+  color: #374151;
+  font-size: 0.55rem;
+  user-select: none;
+}
+
+.footer-divider {
+  border: none;
+  border-top: 1px solid #1a1a1a;
+  margin-bottom: 14px;
+}
+
+/* Legal disclaimer */
 .footer-legal {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: #4b5563;
+  line-height: 1.75;
 }
 
-/* ── TRUST BAR ──────────────────────────────────────────────────────
- * Green strip below nav with quick trust signals.
- * ──────────────────────────────────────────────────────────────── */
-.trust-bar {
-  background: var(--green);
-  padding: 12px var(--space-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  flex-wrap: wrap;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-top: 75px; /* Offset for fixed nav height */
+/* Mobile footer */
+@media (max-width: 540px) {
+  .footer {
+    padding: 28px 20px 20px;
+  }
+  .footer-tagline {
+    font-size: 0.82rem;
+    margin-bottom: 14px;
+  }
+  .footer-links {
+    gap: 5px 10px;
+    margin-bottom: 14px;
+  }
+  .footer-links a {
+    font-size: 0.7rem;
+  }
+  .footer-links .sep {
+    display: none;
+  }
+  .footer-legal {
+    font-size: 0.65rem;
+  }
 }
 
-.trust-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* ── MOBILE BOTTOM PADDING ──────────────────────────────────────────
- * Prevents sticky CTA from covering page content on mobile.
- * ──────────────────────────────────────────────────────────────── */
+/* ── MOBILE BOTTOM PADDING ──────────────────────────────────────── */
 @media (max-width: 767px) {
   body {
     padding-bottom: 80px;

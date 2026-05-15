@@ -3,10 +3,11 @@
  * shared.js — Shared Utilities (runs on EVERY page)
  * ════════════════════════════════════════════════════════════════════
  * Includes:
- *   - Scroll reveal IntersectionObserver
- *   - Dynamic dashboard date
- *   - FAQ accordion toggle
- *   - Sticky CTA show/hide logic
+ *   1. Scroll reveal IntersectionObserver
+ *   2. Dynamic dashboard date
+ *   3. FAQ accordion toggle
+ *   4. Sticky CTA show/hide
+ *   5. Count-up animation for #final stats
  * ════════════════════════════════════════════════════════════════════
  */
 
@@ -14,30 +15,23 @@
 
 /* ══════════════════════════════════════════════════════════════════
  * 1. SCROLL REVEAL
- * Watches elements with class="reveal".
- * Adds class="visible" when they scroll into view.
- * CSS transition in shared.css handles the animation.
  * ══════════════════════════════════════════════════════════════════ */
 (function initScrollReveal() {
-  /* Select all elements that need reveal animation */
   var revealEls = document.querySelectorAll(".reveal");
-  if (!revealEls.length) return; /* Exit if no reveal elements on this page */
+  if (!revealEls.length) return;
 
   var observer = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry, index) {
         if (entry.isIntersecting) {
-          /* Stagger delay: each element enters 60ms after the previous */
           setTimeout(function () {
             entry.target.classList.add("visible");
           }, index * 60);
-
-          /* Stop watching once revealed — no need to re-animate */
           observer.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.12 } /* Trigger when 12% of element is visible */,
+    { threshold: 0.12 },
   );
 
   revealEls.forEach(function (el) {
@@ -47,12 +41,10 @@
 
 /* ══════════════════════════════════════════════════════════════════
  * 2. DYNAMIC DASHBOARD DATE
- * Replaces the hardcoded "May 2025" with the current month/year.
- * Only runs if the dashboard date element exists on the page.
  * ══════════════════════════════════════════════════════════════════ */
 (function setDashboardDate() {
   var dateEl = document.getElementById("dashMonth");
-  if (!dateEl) return; /* Only on landing page */
+  if (!dateEl) return;
 
   dateEl.textContent = new Date().toLocaleDateString("en-US", {
     month: "long",
@@ -62,20 +54,15 @@
 
 /* ══════════════════════════════════════════════════════════════════
  * 3. FAQ ACCORDION TOGGLE
- * Exported as a global function because it's called via onclick=""
- * in the HTML. Opens one FAQ at a time (closes others).
  * ══════════════════════════════════════════════════════════════════ */
 function toggleFaq(btn) {
-  /* Get the parent .faq-item */
   var item = btn.closest(".faq-item");
   var isOpen = item.classList.contains("open");
 
-  /* Close ALL open FAQ items first */
   document.querySelectorAll(".faq-item.open").forEach(function (openItem) {
     openItem.classList.remove("open");
   });
 
-  /* If the clicked item was closed, open it */
   if (!isOpen) {
     item.classList.add("open");
   }
@@ -83,33 +70,111 @@ function toggleFaq(btn) {
 
 /* ══════════════════════════════════════════════════════════════════
  * 4. STICKY MOBILE CTA — SHOW / HIDE
- * Hides the sticky bottom CTA when the hero or optin
- * sections are visible (no need to double-show CTA).
- * Only runs on the landing page where .sticky-cta exists.
  * ══════════════════════════════════════════════════════════════════ */
 (function initStickyCta() {
   var stickyCta = document.querySelector(".sticky-cta");
   var heroSection = document.getElementById("hero");
   var optinSection = document.getElementById("optin");
 
-  /* Exit if elements don't exist on this page */
   if (!stickyCta || !heroSection || !optinSection) return;
 
   var stickyObserver = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          /* Hide CTA when hero or optin section is visible */
           stickyCta.style.display = "none";
         } else {
-          /* Show CTA when both are scrolled out of view */
           stickyCta.style.display = "flex";
         }
       });
     },
-    { threshold: 0.3 } /* Trigger when 30% of section is visible */,
+    { threshold: 0.3 },
   );
 
   stickyObserver.observe(heroSection);
   stickyObserver.observe(optinSection);
+})();
+
+/* ══════════════════════════════════════════════════════════════════
+ * 5. COUNT-UP ANIMATION — for #final stats
+ * ══════════════════════════════════════════════════════════════════
+ *
+ * HOW IT WORKS:
+ *   - Each .final-stat-num element gets a data-target attribute
+ *     with the final number to count to.
+ *   - When the stats section scrolls into view, numbers count up
+ *     from 0 to their target over ~1.8 seconds.
+ *   - Runs only once (observer disconnects after firing).
+ *
+ * DATA ATTRIBUTES on each .final-stat-num:
+ *   data-target="340"     → counts to 340
+ *   data-prefix="$"       → shows "$" before number (e.g. $340)
+ *   data-suffix=" min"    → shows " min" after number
+ *   data-suffix=" Tools"  → shows " Tools" after
+ *   data-suffix="%"       → shows "%" after
+ * ══════════════════════════════════════════════════════════════════ */
+(function initCountUp() {
+  var statsSection = document.getElementById("final");
+  if (!statsSection) return;
+
+  var statEls = statsSection.querySelectorAll(".final-stat-num[data-target]");
+  if (!statEls.length) return;
+
+  var hasAnimated = false;
+
+  /* Easing function — starts fast, slows near end */
+  function easeOutQuart(t) {
+    return 1 - Math.pow(1 - t, 4);
+  }
+
+  function animateCounter(el) {
+    var target = parseFloat(el.getAttribute("data-target")) || 0;
+    var prefix = el.getAttribute("data-prefix") || "";
+    var suffix = el.getAttribute("data-suffix") || "";
+    var decimals = el.getAttribute("data-decimals") || 0;
+    var duration = 1800; /* ms */
+    var start = null;
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+
+      var elapsed = timestamp - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = easeOutQuart(progress);
+      var current = target * eased;
+
+      el.textContent = prefix + current.toFixed(decimals) + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        /* Ensure exact final value */
+        el.textContent = prefix + target.toFixed(decimals) + suffix;
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  var countObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !hasAnimated) {
+          hasAnimated = true;
+
+          /* Stagger each number slightly for a premium feel */
+          statEls.forEach(function (el, index) {
+            setTimeout(function () {
+              animateCounter(el);
+            }, index * 150);
+          });
+
+          countObserver.disconnect();
+        }
+      });
+    },
+    { threshold: 0.4 } /* Trigger when 40% of section visible */,
+  );
+
+  countObserver.observe(statsSection);
 })();
