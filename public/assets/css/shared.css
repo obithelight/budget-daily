@@ -2,69 +2,141 @@
  * ════════════════════════════════════════════════════════════════════
  * shared.css — Global Styles (used on EVERY page)
  * ════════════════════════════════════════════════════════════════════
+ * 
+ * This file contains styles that are shared across all pages:
+ * - Design tokens (CSS custom properties/variables)
+ * - Global reset
+ * - Typography base
+ * - Navigation
+ * - Footer
+ * - Buttons
+ * - Animations
+ * - Trust bar (scrolling marquee)
+ * - Utility classes
+ * 
+ * TABLE OF CONTENTS:
+ * 1. Design Tokens (CSS Variables)
+ * 2. Global Reset
+ * 3. Base Typography
+ * 4. Global Animations
+ * 5. Scroll Reveal Utility
+ * 6. Layout Utilities
+ * 7. Section Shared Styles
+ * 8. Navigation
+ * 9. Buttons
+ * 10. Trust Bar (Scrolling Marquee)
+ * 11. Footer
+ * 12. Mobile Bottom Padding
+ * 
+ * ════════════════════════════════════════════════════════════════════
  */
 
-/* ── DESIGN TOKENS ──────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * 1. DESIGN TOKENS (CSS Custom Properties)
+ * 
+ * These variables define the entire design system:
+ * - Colors (brand, accent, neutral)
+ * - Typography (font families)
+ * - Spacing scale
+ * - Border radius
+ * - Shadows
+ * 
+ * Change a variable here → it updates everywhere automatically
+ * ════════════════════════════════════════════════════════════════════ */
+
 :root {
-  --green: #0f5132;
-  --green-light: #1a7a4a;
-  --green-pale: #e8f5ee;
-  --green-mid: #d0e8d8;
-  --gold: #c8a96b;
-  --gold-light: #e8d5a8;
-  --black: #111111;
-  --white: #ffffff;
-  --beige: #f5f1e8;
-  --beige-dark: #ede8dc;
-  --gray: #6b7280;
-  --gray-light: #f9fafb;
-  --gray-mid: #f3f4f6;
-  --border: #e5e7eb;
-  --font-heading: "Poppins", sans-serif;
-  --font-body: "DM Sans", sans-serif;
+  /* ── Brand Colors ── */
+  --green: #0f5132; /* Primary brand color - dark forest green */
+  --green-light: #1a7a4a; /* Lighter green for hover states */
+  --green-pale: #e8f5ee; /* Very light green for backgrounds */
+  --green-mid: #d0e8d8; /* Medium green for borders */
+
+  /* ── Accent Colors ── */
+  --gold: #c8a96b; /* Primary accent - warm gold */
+  --gold-light: #e8d5a8; /* Light gold for backgrounds */
+
+  /* ── Neutral Colors ── */
+  --black: #111111; /* Primary text color */
+  --white: #ffffff; /* Backgrounds, inverse text */
+  --beige: #f5f1e8; /* Warm off-white background */
+  --beige-dark: #ede8dc; /* Slightly darker beige */
+  --gray: #6b7280; /* Secondary/muted text */
+  --gray-light: #f9fafb; /* Very light gray background */
+  --gray-mid: #f3f4f6; /* Light gray for cards */
+  --border: #e5e7eb; /* Default border color */
+
+  /* ── Typography ── */
+  --font-heading: "Poppins", sans-serif; /* Bold, modern headings */
+  --font-body: "DM Sans", sans-serif; /* Clean, readable body text */
+
+  /* ── Spacing Scale ── */
   --space-xs: 8px;
   --space-sm: 16px;
   --space-md: 24px;
   --space-lg: 48px;
   --space-xl: 80px;
+
+  /* ── Border Radius ── */
   --radius-sm: 12px;
   --radius-md: 20px;
   --radius-lg: 28px;
+
+  /* ── Shadows ── */
   --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 8px 40px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.12);
 }
 
-/* ── GLOBAL RESET ───────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * 2. GLOBAL RESET
+ * 
+ * Removes default browser margins, padding, and box model quirks.
+ * Creates a clean, consistent starting point across all browsers.
+ * ════════════════════════════════════════════════════════════════════ */
+
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Include padding/border in width/height */
   margin: 0;
   padding: 0;
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links (#) */
 }
 
 body {
   font-family: var(--font-body);
   color: var(--black);
   background: var(--white);
-  overflow-x: hidden;
-  line-height: 1.6;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  line-height: 1.6; /* Default line height for readability */
 }
+
+/* ════════════════════════════════════════════════════════════════════
+ * 3. BASE TYPOGRAPHY
+ * 
+ * All headings use Poppins (set via --font-heading).
+ * Body text uses DM Sans (set on body above).
+ * ════════════════════════════════════════════════════════════════════ */
 
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-heading);
-  line-height: 1.2;
+  line-height: 1.2; /* Tighter line height for headings */
 }
 
-/* ── GLOBAL ANIMATIONS ──────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * 4. GLOBAL ANIMATIONS
+ * 
+ * Keyframe animations used throughout the site.
+ * These are referenced by animation properties in other rules.
+ * ════════════════════════════════════════════════════════════════════ */
+
+/* Element fades up from below */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -76,6 +148,7 @@ h4 {
   }
 }
 
+/* Simple fade in (no movement) */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -85,6 +158,7 @@ h4 {
   }
 }
 
+/* Gentle floating up and down — used on dashboard card */
 @keyframes floatY {
   0%,
   100% {
@@ -95,6 +169,7 @@ h4 {
   }
 }
 
+/* Pulsing ring — used on hero badge gold dot */
 @keyframes pulse-ring {
   0% {
     box-shadow: 0 0 0 0 rgba(200, 169, 107, 0.4);
@@ -107,6 +182,7 @@ h4 {
   }
 }
 
+/* Green pulsing ring — used on thank-you page check icon */
 @keyframes pulse-green {
   0%,
   100% {
@@ -117,12 +193,14 @@ h4 {
   }
 }
 
+/* Loading spinner rotation */
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
 
+/* Pop + slight overshoot — used on check mark icon */
 @keyframes checkPop {
   0% {
     transform: scale(0) rotate(-30deg);
@@ -135,7 +213,17 @@ h4 {
   }
 }
 
-/* ── TRUST BAR MARQUEE ANIMATION ──────────────────────────────────── */
+/* ── TRUST BAR MARQUEE ANIMATION ────────────────────────────────────
+ * 
+ * How it works:
+ * 1. The .trust-track contains 2 copies of the trust items (A + B)
+ * 2. Animation starts at -50% (showing the second half)
+ * 3. Animation ends at 0% (showing the first half)
+ * 4. When it reaches 0%, it seamlessly loops back to -50%
+ * 5. Because content is duplicated, the loop appears infinite
+ * 
+ * Direction: LEFT → RIGHT
+ * ──────────────────────────────────────────────────────────────── */
 @keyframes marquee-ltr {
   0% {
     transform: translateX(-50%);
@@ -145,36 +233,62 @@ h4 {
   }
 }
 
-/* ── SCROLL REVEAL ──────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * 5. SCROLL REVEAL UTILITY
+ * 
+ * Add class="reveal" to any element you want to fade in when scrolled.
+ * JavaScript (shared.js) uses IntersectionObserver to add "visible"
+ * class when the element enters the viewport.
+ * ════════════════════════════════════════════════════════════════════ */
+
 .reveal {
-  opacity: 0;
-  transform: translateY(28px);
+  opacity: 0; /* Hidden initially */
+  transform: translateY(28px); /* Starts below final position */
   transition:
     opacity 0.65s ease,
     transform 0.65s ease;
 }
+
+/* When .visible is added by JS */
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── LAYOUT UTILITIES ───────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * 6. LAYOUT UTILITIES
+ * 
+ * Small helper classes used across multiple pages.
+ * ════════════════════════════════════════════════════════════════════ */
+
+/* Container: Caps content width and centers it */
 .container {
   max-width: 1100px;
   margin: 0 auto;
 }
+
+/* Center text within an element */
 .text-center {
   text-align: center;
 }
+
+/* When .text-center is used, also center the .section-sub paragraph */
 .text-center .section-sub {
   margin: 0 auto;
 }
 
-/* ── SECTION SHARED STYLES ──────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * 7. SECTION SHARED STYLES
+ * 
+ * Base styles applied to all <section> elements.
+ * Individual sections override these as needed.
+ * ════════════════════════════════════════════════════════════════════ */
+
 section {
-  padding: var(--space-xl) var(--space-md);
+  padding: var(--space-xl) var(--space-md); /* 80px top/bottom, 24px sides */
 }
 
+/* Section label: Small uppercase text above title */
 .section-label {
   font-size: 0.75rem;
   font-weight: 700;
@@ -184,28 +298,37 @@ section {
   margin-bottom: 12px;
 }
 
+/* Section title: Main heading */
 .section-title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.75rem, 4vw, 2.5rem); /* Responsive: 1.75rem to 2.5rem */
   font-weight: 800;
   margin-bottom: 16px;
 }
 
+/* Section subtitle: Descriptive paragraph under title */
 .section-sub {
   font-size: 1.05rem;
   color: #4b5563;
-  max-width: 580px;
+  max-width: 580px; /* Readable line length */
   line-height: 1.75;
 }
 
-/* ── SHARED NAV ─────────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * 8. NAVIGATION
+ * 
+ * Fixed navigation bar at top of page.
+ * Contains logo (left) and CTA button (right).
+ * CTA button is hidden on mobile, shown on tablet+.
+ * ════════════════════════════════════════════════════════════════════ */
+
 .nav {
-  position: fixed;
+  position: fixed; /* Stays at top when scrolling */
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 100; /* Above all other content */
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px); /* Frosted glass effect */
   border-bottom: 1px solid var(--border);
   padding: 14px var(--space-md);
   display: flex;
@@ -213,23 +336,26 @@ section {
   justify-content: space-between;
 }
 
+/* Logo: "Budget" = green (default), "Daily" = gold (via span) */
 .nav-logo {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.25rem;
-  color: var(--green); /* "Budget" = green */
+  color: var(--green); /* "Budget" color */
   display: flex;
   align-items: center;
   text-decoration: none;
   letter-spacing: -0.5px;
 }
 
-/* "Daily" part = gold */
+/* "Daily" part of logo — colored gold */
+/* Also used for .daily class anywhere in the site */
 .nav-logo span,
 .daily {
   color: var(--gold);
 }
 
+/* CTA button in nav */
 .nav-cta {
   background: var(--green);
   color: var(--white);
@@ -242,7 +368,7 @@ section {
   cursor: pointer;
   text-decoration: none;
   transition: all 0.2s ease;
-  display: none;
+  display: none; /* Hidden on mobile */
 }
 
 .nav-cta:hover {
@@ -250,13 +376,20 @@ section {
   transform: translateY(-1px);
 }
 
+/* Show nav CTA on tablet and above */
 @media (min-width: 768px) {
   .nav-cta {
     display: inline-block;
   }
 }
 
-/* ── SHARED BUTTONS ─────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * 9. BUTTONS
+ * 
+ * Reusable button styles used across the site.
+ * ════════════════════════════════════════════════════════════════════ */
+
+/* Primary button: Dark green background */
 .btn-primary {
   background: var(--green);
   color: var(--white);
@@ -271,7 +404,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 8px; /* Space between icon and text */
   text-decoration: none;
 }
 
@@ -281,12 +414,14 @@ section {
   box-shadow: 0 12px 32px rgba(15, 81, 50, 0.3);
 }
 
+/* SVG icon inside button */
 .btn-primary svg {
   width: 18px;
   height: 18px;
-  flex-shrink: 0;
+  flex-shrink: 0; /* Don't shrink icon */
 }
 
+/* Gold button: Warm gold background */
 .btn-gold {
   background: var(--gold);
   color: var(--black);
@@ -305,59 +440,80 @@ section {
 }
 
 .btn-gold:hover {
-  background: #d4b87a;
+  background: #d4b87a; /* Slightly darker gold */
   transform: translateY(-2px);
   box-shadow: 0 14px 40px rgba(200, 169, 107, 0.5);
 }
 
 /* ════════════════════════════════════════════════════════════════════
- * TRUST BAR — Scrolling Marquee (all screen sizes)
+ * 10. TRUST BAR (Scrolling Marquee)
+ * 
+ * Green bar below navigation with scrolling trust signals.
+ * 
+ * STRUCTURE:
+ * <div class="trust-bar">
+ *   <div class="trust-track">
+ *     [items] × 2   ← duplicated for seamless loop
+ *   </div>
+ * </div>
+ * 
+ * The items scroll continuously left-to-right.
+ * Faded edges on left/right create a premium feel.
  * ════════════════════════════════════════════════════════════════════ */
+
 .trust-bar {
   background: var(--green);
-  overflow: hidden;
-  margin-top: 65px;
+  overflow: hidden; /* Clips the scrolling track */
+  margin-top: 65px; /* Offset for fixed nav height */
   padding: 0;
-  white-space: nowrap;
+  white-space: nowrap; /* Keep all items on one line */
   position: relative;
-  height: 44px;
+  height: 44px; /* Fixed height — NO stacking on mobile */
   display: flex;
   align-items: center;
 }
 
-/* Fade edges */
-.trust-bar::before,
+/* Fade effect on left edge */
+.trust-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to right, var(--green), transparent);
+}
+
+/* Fade effect on right edge */
 .trust-bar::after {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
+  right: 0;
   width: 60px;
   z-index: 2;
   pointer-events: none;
-}
-.trust-bar::before {
-  left: 0;
-  background: linear-gradient(to right, var(--green), transparent);
-}
-.trust-bar::after {
-  right: 0;
   background: linear-gradient(to left, var(--green), transparent);
 }
 
-/* Moving track */
+/* The moving track — contains duplicated content for seamless loop */
 .trust-track {
   display: inline-flex;
   align-items: center;
   gap: 0;
-  animation: marquee-ltr 28s linear infinite;
-  will-change: transform;
+  animation: marquee-ltr 28s linear infinite; /* 28 seconds per loop */
+  will-change: transform; /* GPU acceleration hint */
 }
 
+/* Pause animation on hover for accessibility */
 .trust-bar:hover .trust-track {
   animation-play-state: paused;
 }
 
+/* Individual trust item */
 .trust-item {
   display: inline-flex;
   align-items: center;
@@ -370,15 +526,30 @@ section {
   border-right: 1px solid rgba(255, 255, 255, 0.15);
   height: 44px;
 }
+
+/* Remove border from last item (before it repeats) */
 .trust-item:last-child {
   border-right: none;
 }
+
+/* Emoji icon */
 .trust-item-icon {
   font-size: 1rem;
   line-height: 1;
 }
 
-/* ── SHARED FOOTER ──────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * 11. FOOTER
+ * 
+ * Site footer with logo, tagline, links, and legal text.
+ * 
+ * VISUAL HIERARCHY (by prominence):
+ * 1. Logo (largest, green + gold)
+ * 2. Tagline (medium, light gray #9ca3af)
+ * 3. Navigation links (small, faint #4b5563)
+ * 4. Legal disclaimer (smallest, same faint #4b5563)
+ * ════════════════════════════════════════════════════════════════════ */
+
 .footer {
   background: var(--black);
   padding: 32px var(--space-md) 24px;
@@ -390,7 +561,7 @@ section {
   text-align: center;
 }
 
-/* Logo: "Budget" = white, "Daily" = gold */
+/* Footer logo: "Budget" = white, "Daily" = gold (via span) */
 .footer-logo {
   font-family: var(--font-heading);
   font-weight: 800;
@@ -402,14 +573,15 @@ section {
   justify-content: center;
   letter-spacing: -0.5px;
 }
+
 .footer-logo span {
   color: var(--gold);
 }
 
-/* Tagline — more prominent */
+/* Tagline: Most prominent text after logo */
 .footer-tagline {
   font-size: 0.85rem;
-  color: #9ca3af;
+  color: #9ca3af; /* Lighter gray — stands out */
   margin-bottom: 16px;
   line-height: 1.55;
   max-width: 340px;
@@ -417,7 +589,7 @@ section {
   margin-right: auto;
 }
 
-/* Footer links — smaller and fainter */
+/* Navigation links: Smaller and fainter than tagline */
 .footer-links {
   display: flex;
   justify-content: center;
@@ -426,63 +598,79 @@ section {
   flex-wrap: wrap;
   margin-bottom: 16px;
 }
+
 .footer-links a {
-  font-size: 0.72rem;
-  color: #4b5563;
+  font-size: 0.72rem; /* Smaller than tagline */
+  color: #4b5563; /* Fainter — same as legal text */
   text-decoration: none;
   transition: color 0.2s ease;
   padding: 2px 0;
 }
+
 .footer-links a:hover {
   color: var(--gold);
 }
 
+/* Dot separator between links */
 .footer-links .sep {
   color: #374151;
   font-size: 0.55rem;
   user-select: none;
 }
 
+/* Horizontal divider line */
 .footer-divider {
   border: none;
   border-top: 1px solid #1a1a1a;
   margin-bottom: 14px;
 }
 
-/* Legal disclaimer */
+/* Legal disclaimer: Smallest text */
 .footer-legal {
   font-size: 0.68rem;
-  color: #4b5563;
+  color: #4b5563; /* Same faint shade as links */
   line-height: 1.75;
 }
 
-/* Mobile footer */
+/* ── Mobile footer adjustments ── */
 @media (max-width: 540px) {
   .footer {
     padding: 28px 20px 20px;
   }
+
   .footer-tagline {
     font-size: 0.82rem;
     margin-bottom: 14px;
   }
+
   .footer-links {
     gap: 5px 10px;
     margin-bottom: 14px;
   }
+
   .footer-links a {
     font-size: 0.7rem;
   }
+
+  /* Hide dot separators on mobile — cleaner when wrapping */
   .footer-links .sep {
     display: none;
   }
+
   .footer-legal {
     font-size: 0.65rem;
   }
 }
 
-/* ── MOBILE BOTTOM PADDING ──────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * 12. MOBILE BOTTOM PADDING
+ * 
+ * Prevents the sticky mobile CTA button from covering page content.
+ * Only applies on screens smaller than 768px where sticky CTA shows.
+ * ════════════════════════════════════════════════════════════════════ */
+
 @media (max-width: 767px) {
   body {
-    padding-bottom: 80px;
+    padding-bottom: 80px; /* Space for sticky CTA height */
   }
 }
