@@ -2,54 +2,24 @@
  * ════════════════════════════════════════════════════════════════════
  * landing.css — Landing Page Styles ONLY
  * ════════════════════════════════════════════════════════════════════
- * 
- * This file contains styles specific to the landing page (/starter-kit).
- * It depends on shared.css being loaded first for CSS variables and
- * global styles like buttons, nav, footer, etc.
- * 
- * TABLE OF CONTENTS:
- * 1. Hero Section
- * 2. Dashboard Mockup
- * 3. Pain Points Section
- * 4. Free Starter Kit Section (#kit)
- * 5. Why People Fail Section
- * 6. Why Budget Daily Section (#different)
- * 7. Testimonials Section (currently unused)
- * 8. About Section
- * 9. Opt-in Section
- * 10. Final CTA Section (Stats + CTA Box)
- * 11. FAQ Section
- * 12. Sticky Mobile CTA
- * 13. Form Error Messages
- * 
- * ════════════════════════════════════════════════════════════════════
  */
 
-/* ════════════════════════════════════════════════════════════════════
- * 1. HERO SECTION
- * 
- * The main above-the-fold section with headline, form, and dashboard.
- * - min-height: 100vh ensures it fills at least the full viewport
- * - Gradient background goes from white → beige → light green
- * - ::before and ::after create decorative radial gradient circles
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ── HERO SECTION ───────────────────────────────────────────────── */
 #hero {
-  min-height: 100vh; /* Full viewport height minimum */
-  padding-top: 110px; /* Space for fixed nav + trust bar */
+  min-height: 100vh;
+  padding-top: 110px;
   background: linear-gradient(
-    /* Diagonal gradient background */ 160deg,
+    160deg,
     var(--white) 0%,
     var(--beige) 55%,
     #e6f0ea 100%
   );
-  display: flex; /* Flexbox for vertical centering */
-  align-items: center; /* Center content vertically */
-  position: relative; /* For absolute positioned pseudo-elements */
-  overflow: hidden; /* Hide overflow from decorative circles */
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Decorative circle: Top-right (green tint) */
 #hero::before {
   content: "";
   position: absolute;
@@ -60,12 +30,11 @@
   background: radial-gradient(
     circle,
     rgba(15, 81, 50, 0.07) 0%,
-    /* Very subtle green */ transparent 70%
+    transparent 70%
   );
   border-radius: 50%;
 }
 
-/* Decorative circle: Bottom-left (gold tint) */
 #hero::after {
   content: "";
   position: absolute;
@@ -76,118 +45,89 @@
   background: radial-gradient(
     circle,
     rgba(200, 169, 107, 0.1) 0%,
-    /* Very subtle gold */ transparent 70%
+    transparent 70%
   );
   border-radius: 50%;
 }
 
-/* Hero inner container: Grid layout */
 .hero-inner {
-  max-width: 1200px; /* Cap width on large screens */
-  margin: 0 auto; /* Center horizontally */
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 40px var(--space-md) 60px;
   display: grid;
-  gap: 48px; /* Space between columns */
-  grid-template-columns: 1fr; /* Single column on mobile (default) */
+  gap: 48px;
+  grid-template-columns: 1fr;
   position: relative;
-  z-index: 1; /* Above the ::before/::after decorations */
+  z-index: 1;
 }
 
-/* Desktop: Two equal columns side by side */
 @media (min-width: 960px) {
   .hero-inner {
     grid-template-columns: 1fr 1fr;
-    align-items: center; /* Vertically align columns */
+    align-items: center;
     padding: 60px var(--space-md);
   }
 }
 
-/* ── HERO BADGE ─────────────────────────────────────────────────────
- * The animated pill that says "Free Download — No Credit Card Required"
- * 
- * KEY FEATURES:
- * - white-space: nowrap — NEVER wraps to two lines, no matter what
- * - font-size: clamp() — Smoothly scales down on small screens
- * - max-width: 100% — Prevents horizontal overflow
- * - ::before — Creates the pulsing gold dot animation
- * ──────────────────────────────────────────────────────────────── */
-
+/* ── HERO BADGE — Never wraps on any screen ─────────────────────── */
 .hero-badge {
-  display: inline-flex; /* Inline element that can use flexbox */
-  align-items: center; /* Vertically center icon and text */
-  gap: 8px; /* Space between dot and text */
-  background: var(--green-pale); /* Light green background */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green-pale);
   border: 1px solid rgba(15, 81, 50, 0.2);
-  border-radius: 50px; /* Fully rounded pill shape */
+  border-radius: 50px;
   padding: 6px 16px;
   font-weight: 500;
   color: var(--green);
   margin-bottom: 18px;
-  animation: fadeUp 0.6s ease both; /* Fade in on load */
-
-  /* ═══ CRITICAL: Never wrap to two lines ═══ */
-  white-space: nowrap; /* Forces single line always */
-  font-size: clamp(0.6rem, 3.2vw, 0.8rem); /* Shrinks smoothly on mobile */
-  max-width: 100%; /* Never overflows container */
+  animation: fadeUp 0.6s ease both;
+  white-space: nowrap; /* Force single line */
+  font-size: clamp(0.6rem, 3.2vw, 0.8rem); /* Responsive font size */
+  max-width: 100%;
 }
 
-/* Pulsing gold dot inside the badge */
 .hero-badge::before {
   content: "";
   width: 8px;
   height: 8px;
-  min-width: 8px; /* Never shrinks smaller than this */
+  min-width: 8px;
   background: var(--gold);
   border-radius: 50%;
-  animation: pulse-ring 2s infinite; /* Pulsing ring animation */
-  flex-shrink: 0; /* Never collapses when space is tight */
+  animation: pulse-ring 2s infinite;
+  flex-shrink: 0;
 }
 
-/* ── HERO HEADLINE ─────────────────────────────────────────────────
- * Main value proposition text
- * - clamp() provides responsive font sizing
- * - .accent class colors key phrase in green
- * ──────────────────────────────────────────────────────────────── */
-
+/* ── Hero headline & subheading ─────────────────────────────────── */
 .hero-headline {
-  font-size: clamp(2rem, 5vw, 3.25rem); /* Min: 2rem, Max: 3.25rem */
+  font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 800;
   color: var(--black);
-  line-height: 1.15; /* Tight line height for headlines */
+  line-height: 1.15;
   margin-bottom: 18px;
-  animation: fadeUp 0.6s 0.1s ease both; /* Staggered fade in */
+  animation: fadeUp 0.6s 0.1s ease both;
 }
-
-/* Accent color for key phrase */
 .hero-headline .accent {
   color: var(--green);
 }
 
-/* ── HERO SUBHEADING ───────────────────────────────────────────────
- * Supporting text that expands on the headline
- * ──────────────────────────────────────────────────────────────── */
-
 .hero-sub {
   font-size: 1rem;
-  color: #4b5563; /* Gray text */
-  max-width: 520px; /* Readable line length */
+  color: #4b5563;
+  max-width: 520px;
   margin-bottom: 32px;
-  line-height: 1.75; /* Generous line height for readability */
+  line-height: 1.75;
   animation: fadeUp 0.6s 0.2s ease both;
 }
 
-/* ── HERO FORM ─────────────────────────────────────────────────────
- * Email capture form with name, email, and submit button
- * ──────────────────────────────────────────────────────────────── */
-
+/* ── Hero form & trust line ─────────────────────────────────────── */
 .hero-form {
   display: flex;
-  flex-direction: column; /* Stack inputs vertically */
-  gap: 12px; /* Space between inputs */
+  flex-direction: column;
+  gap: 12px;
   max-width: 480px;
   animation: fadeUp 0.6s 0.3s ease both;
 }
-
 .hero-form input {
   padding: 16px 20px;
   border: 2px solid var(--border);
@@ -200,23 +140,15 @@
   transition: border-color 0.2s ease;
   width: 100%;
 }
-
-/* Focus state: Green border */
 .hero-form input:focus {
   border-color: var(--green);
 }
-
-/* Placeholder text color */
 .hero-form input::placeholder {
   color: #9ca3af;
 }
 
-/* ── HERO TRUST LINE ───────────────────────────────────────────────
- * "Free forever. No credit card required." text below button
- * ──────────────────────────────────────────────────────────────── */
-
 .hero-trust {
-  max-width: 480px; /* Match form width */
+  max-width: 480px;
   text-align: center;
   margin-top: 6px;
   font-size: 0.75rem;
@@ -224,17 +156,10 @@
   animation: fadeUp 0.6s 0.4s ease both;
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 2. DASHBOARD MOCKUP
- * 
- * The animated budget dashboard visual on the right side of hero.
- * - floatY animation creates gentle up/down motion
- * - Floating badges appear to hover around the card
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ── DASHBOARD MOCKUP ───────────────────────────────────────────── */
 .hero-visual {
   animation: fadeUp 0.8s 0.2s ease both;
-  position: relative; /* For absolute positioned floating badges */
+  position: relative;
 }
 
 .dashboard-card {
@@ -242,26 +167,23 @@
   border-radius: var(--space-md);
   box-shadow:
     0 24px 80px rgba(0, 0, 0, 0.12),
-    /* Large soft shadow */ 0 4px 16px rgba(0, 0, 0, 0.06); /* Smaller crisp shadow */
+    0 4px 16px rgba(0, 0, 0, 0.06);
   padding: 28px;
-  animation: floatY 5s ease-in-out infinite; /* Gentle float animation */
+  animation: floatY 5s ease-in-out infinite;
 }
 
-/* Dashboard header with title and month */
 .dash-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 24px;
 }
-
 .dash-title {
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1rem;
   color: var(--black);
 }
-
 .dash-month {
   font-size: 0.75rem;
   color: var(--gray);
@@ -270,7 +192,6 @@
   border-radius: 20px;
 }
 
-/* Balance card: Green gradient */
 .dash-balance {
   background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
   border-radius: 16px;
@@ -278,30 +199,25 @@
   color: var(--white);
   margin-bottom: 20px;
 }
-
 .dash-balance-label {
   font-size: 0.75rem;
   opacity: 0.8;
   margin-bottom: 4px;
 }
-
 .dash-balance-amount {
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 800;
 }
-
 .dash-balance-sub {
   font-size: 0.75rem;
   opacity: 0.7;
   margin-top: 4px;
 }
 
-/* Progress bar section */
 .dash-progress-section {
   margin-bottom: 20px;
 }
-
 .dash-progress-label {
   display: flex;
   justify-content: space-between;
@@ -310,50 +226,43 @@
   color: var(--black);
   font-weight: 500;
 }
-
 .dash-progress-bar {
   height: 8px;
   background: #e5e7eb;
   border-radius: 8px;
   overflow: hidden;
 }
-
 .dash-progress-fill {
   height: 100%;
   border-radius: 8px;
   background: linear-gradient(90deg, var(--green), var(--gold));
 }
 
-/* Spending categories: 2x2 grid */
 .dash-categories {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
-
 .dash-cat {
   background: var(--beige);
   border-radius: var(--radius-sm);
   padding: 12px;
 }
-
 .dash-cat-icon {
   font-size: 1.2rem;
   margin-bottom: 4px;
 }
-
 .dash-cat-name {
   font-size: 0.7rem;
   color: var(--gray);
 }
-
 .dash-cat-amount {
   font-family: var(--font-heading);
   font-size: 0.875rem;
   font-weight: 700;
 }
 
-/* Floating badges that hover around the dashboard card */
+/* Floating badges */
 .float-badge {
   position: absolute;
   background: var(--white);
@@ -365,107 +274,79 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  white-space: nowrap; /* Prevent text wrap */
+  white-space: nowrap;
 }
-
 .float-badge.top-left {
   top: -16px;
   left: -20px;
-  animation: floatY 4s 0.5s ease-in-out infinite; /* Offset timing */
+  animation: floatY 4s 0.5s ease-in-out infinite;
 }
-
 .float-badge.bottom-right {
   bottom: -16px;
   right: -20px;
-  animation: floatY 4s 1s ease-in-out infinite; /* Different offset */
+  animation: floatY 4s 1s ease-in-out infinite;
 }
-
-/* Colored dots inside floating badges */
 .badge-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
 }
-
 .badge-dot.green {
   background: #22c55e;
 }
-
 .badge-dot.gold {
   background: var(--gold);
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 3. PAIN POINTS SECTION
- * 
- * Dark section that empathizes with visitor's financial struggles.
- * - Black background with light text
- * - 6 cards in responsive grid
- * - Hopeful transition box at bottom
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ── PAIN POINTS SECTION ────────────────────────────────────────── */
 #pain {
   background: var(--black);
 }
-
-/* Override section styles for dark background */
 #pain .section-label {
   color: var(--gold);
 }
-
 #pain .section-title {
   color: var(--white);
 }
-
 #pain .section-sub {
   color: #9ca3af;
 }
 
-/* Pain point cards grid */
 .pain-grid {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(280px, 1fr)
-  ); /* Responsive columns */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   margin-top: 48px;
 }
 
 .pain-card {
-  background: #1a1a1a; /* Slightly lighter than pure black */
+  background: #1a1a1a;
   border: 1px solid #2a2a2a;
   border-radius: var(--radius-md);
   padding: 28px;
   transition: all 0.3s ease;
 }
-
-/* Hover state: Gold border and lift */
 .pain-card:hover {
   border-color: var(--gold);
   transform: translateY(-4px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
-
 .pain-icon {
   font-size: 2rem;
   margin-bottom: 14px;
 }
-
 .pain-card h3 {
   font-size: 1rem;
   font-weight: 700;
   color: var(--white);
   margin-bottom: 8px;
 }
-
 .pain-card p {
   font-size: 0.875rem;
   color: #9ca3af;
   line-height: 1.65;
 }
 
-/* Hopeful transition box */
 .pain-hopeful {
   margin-top: 48px;
   text-align: center;
@@ -474,13 +355,11 @@
   padding: 40px 32px;
   color: var(--white);
 }
-
 .pain-hopeful h3 {
   font-size: 1.5rem;
   font-weight: 800;
   margin-bottom: 10px;
 }
-
 .pain-hopeful p {
   font-size: 1rem;
   opacity: 0.85;
@@ -488,48 +367,44 @@
   margin: 0 auto;
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 4. FREE STARTER KIT SECTION (#kit)
- * 
- * Shows the 6 tools included in the free download.
- * 
- * GRID LAYOUT:
- * - Desktop (>768px):   3 columns × 2 rows = 6 cards
- * - Tablet (541-768px): 2 columns × 3 rows = 6 cards
- * - Mobile (≤540px):    1 column × 6 rows = 6 cards (stacked)
- * 
- * On mobile, cards switch to horizontal layout for better readability
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ════════════════════════════════════════════════════════════════
+   FREE STARTER KIT SECTION (#kit) — 6 cards
+   Desktop: 3 per row
+   Tablet:  2 per row
+   Mobile:  1 per row
+   ════════════════════════════════════════════════════════════════ */
 #kit {
   background: var(--beige);
 }
 
-/* Grid: 3 columns on desktop */
 .kit-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
   gap: 20px;
   margin-top: 48px;
 }
 
-/* Tablet: 2 columns */
-@media (max-width: 768px) {
+/* Desktop — 3 columns */
+@media (min-width: 769px) {
   .kit-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Mobile: 1 column (stacked) */
+/* Tablet — 2 columns */
+@media (max-width: 768px) and (min-width: 541px) {
+  .kit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile — 1 column */
 @media (max-width: 540px) {
   .kit-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
   }
 }
 
-/* Kit card styling */
+/* Kit card base styles */
 .kit-card {
   background: var(--white);
   border-radius: var(--radius-md);
@@ -539,15 +414,11 @@
   border: 2px solid transparent;
   text-align: center;
 }
-
-/* Hover state: Green border and lift */
 .kit-card:hover {
   border-color: var(--green);
   transform: translateY(-6px);
   box-shadow: 0 16px 40px rgba(15, 81, 50, 0.15);
 }
-
-/* Icon container */
 .kit-icon {
   width: 56px;
   height: 56px;
@@ -559,23 +430,18 @@
   font-size: 1.5rem;
   margin: 0 auto 16px;
 }
-
 .kit-card h3 {
   font-size: 0.95rem;
   font-weight: 700;
   margin-bottom: 8px;
 }
-
 .kit-card p {
   font-size: 0.8rem;
   color: var(--gray);
   line-height: 1.6;
 }
 
-/* ── Mobile: Horizontal card layout ───────────────────────────────
- * On small screens, switch from vertical to horizontal layout
- * Icon on left, text on right — much more readable
- * ──────────────────────────────────────────────────────────────── */
+/* Mobile horizontal card layout */
 @media (max-width: 540px) {
   .kit-card {
     text-align: left;
@@ -584,126 +450,101 @@
     gap: 16px;
     padding: 20px;
   }
-
   .kit-icon {
-    flex-shrink: 0; /* Don't shrink icon */
-    margin: 0; /* Remove auto margin */
+    flex-shrink: 0;
+    margin: 0;
     width: 48px;
     height: 48px;
     font-size: 1.3rem;
   }
-
   .kit-card-body {
-    flex: 1; /* Take remaining space */
+    flex: 1;
   }
-
   .kit-card h3 {
     font-size: 0.9rem;
     margin-bottom: 4px;
   }
-
   .kit-card p {
     font-size: 0.78rem;
   }
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 5. WHY PEOPLE FAIL SECTION
- * 
- * Two-column layout showing failure reasons vs. solution
- * - Left: List of red-accented failure cards
- * - Right: Green solution box
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ── WHY PEOPLE FAIL ────────────────────────────────────────────── */
 #why-fail {
   background: var(--white);
 }
 
 .fail-layout {
   display: grid;
-  grid-template-columns: 1fr; /* Single column on mobile */
+  grid-template-columns: 1fr;
   gap: 40px;
   margin-top: 48px;
   align-items: center;
 }
-
-/* Desktop: Two columns */
 @media (min-width: 768px) {
   .fail-layout {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-/* Failure reasons list */
 .fail-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Individual failure card */
 .fail-item {
   display: flex;
   gap: 16px;
   align-items: flex-start;
   padding: 20px;
-  background: #fff8f8; /* Very light red background */
+  background: #fff8f8;
   border-radius: 14px;
-  border-left: 4px solid #ef4444; /* Red left border */
+  border-left: 4px solid #ef4444;
 }
-
 .fail-item-icon {
   font-size: 1.4rem;
   flex-shrink: 0;
 }
-
 .fail-item h4 {
   font-size: 0.95rem;
   font-weight: 700;
   margin-bottom: 4px;
 }
-
 .fail-item p {
   font-size: 0.825rem;
   color: var(--gray);
   line-height: 1.55;
 }
 
-/* Solution box */
 .solution-box {
   background: linear-gradient(135deg, var(--green) 0%, #1a7a4a 100%);
   border-radius: var(--space-md);
   padding: 40px;
   color: var(--white);
 }
-
 .solution-box h3 {
   font-size: 1.5rem;
   font-weight: 800;
   margin-bottom: 16px;
 }
-
 .solution-box p {
   opacity: 0.85;
   line-height: 1.75;
   margin-bottom: 24px;
 }
 
-/* Solution checkpoints */
 .solution-points {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
 .solution-point {
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 0.875rem;
 }
-
-/* Checkmark icon */
 .check-icon {
   width: 22px;
   height: 22px;
@@ -716,61 +557,50 @@
   font-size: 0.7rem;
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 6. WHY BUDGET DAILY SECTION (#different)
- * 
- * Shows 6-8 unique selling points in numbered cards.
- * 
- * GRID LAYOUT:
- * - Desktop (>900px):   4 columns × 2 rows = 8 cards (all visible)
- * - Tablet (541-900px): 2 columns × 4 rows = 8 cards (all visible)
- * - Mobile (≤540px):    1 column × 6 rows = 6 cards (07 & 08 hidden)
- * 
- * Cards 07 & 08 have .diff-desktop-only class:
- * - Hidden on mobile only (screens ≤540px)
- * - Visible on tablet and desktop
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ════════════════════════════════════════════════════════════════
+   WHY BUDGET DAILY SECTION (#different)
+   Desktop: 4 cols (8 cards)
+   Tablet:  2 cols
+   Mobile:  1 col (stacked)
+   ════════════════════════════════════════════════════════════════ */
 #different {
   background: var(--beige);
 }
 
-/* Grid container */
 .diff-grid {
   display: grid;
   gap: 20px;
   margin-top: 48px;
 }
 
-/* Desktop (>900px): 4 columns, all 8 cards visible */
-@media (min-width: 901px) {
+/* Desktop — 4 columns */
+@media (min-width: 769px) {
   .diff-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-/* Tablet (541-900px): 2 columns, all 8 cards visible */
-@media (max-width: 900px) and (min-width: 541px) {
+/* Tablet — 2 columns */
+@media (max-width: 768px) and (min-width: 541px) {
   .diff-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
   }
-}
-
-/* Mobile (≤540px): 1 column, only 6 cards visible */
-@media (max-width: 540px) {
-  .diff-grid {
-    grid-template-columns: 1fr; /* Single column - stacked */
-    gap: 16px;
-  }
-
-  /* Hide cards 07 & 08 on mobile */
   .diff-desktop-only {
     display: none;
   }
 }
 
-/* Difference card styling */
+/* Mobile — 1 column, stacked, readable */
+@media (max-width: 540px) {
+  .diff-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .diff-desktop-only {
+    display: none;
+  }
+}
+
 .diff-card {
   background: var(--white);
   border-radius: var(--radius-md);
@@ -778,10 +608,8 @@
   box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden; /* For the top border gradient */
+  overflow: hidden;
 }
-
-/* Top border: Green-to-gold gradient */
 .diff-card::before {
   content: "";
   position: absolute;
@@ -791,61 +619,45 @@
   height: 4px;
   background: linear-gradient(90deg, var(--green), var(--gold));
 }
-
-/* Hover state */
 .diff-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
 }
-
-/* Large number (decorative) */
 .diff-num {
   font-family: var(--font-heading);
   font-size: 2.5rem;
   font-weight: 900;
-  color: var(--green-pale); /* Very light green - subtle */
+  color: var(--green-pale);
   line-height: 1;
   margin-bottom: 12px;
 }
-
 .diff-card h3 {
   font-size: 0.95rem;
   font-weight: 700;
   margin-bottom: 8px;
 }
-
 .diff-card p {
   font-size: 0.82rem;
   color: var(--gray);
   line-height: 1.65;
 }
 
-/* Mobile adjustments for diff cards */
 @media (max-width: 540px) {
   .diff-card {
-    padding: 24px 20px;
+    padding: 20px 16px;
   }
-
   .diff-num {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 1.8rem;
   }
-
   .diff-card h3 {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
-
   .diff-card p {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 7. TESTIMONIALS SECTION (Currently unused - commented out in HTML)
- * 
- * Preserved for when you have real testimonials to add.
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ── TESTIMONIALS ───────────────────────────────────────────────── */
 #testimonials {
   background: var(--white);
 }
@@ -864,18 +676,15 @@
   border: 1px solid rgba(200, 169, 107, 0.3);
   transition: all 0.3s ease;
 }
-
 .testi-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
-
 .testi-stars {
   color: var(--gold);
   font-size: 1rem;
   margin-bottom: 14px;
 }
-
 .testi-quote {
   font-size: 0.9rem;
   color: #374151;
@@ -883,7 +692,6 @@
   margin-bottom: 18px;
   font-style: italic;
 }
-
 .testi-author {
   display: flex;
   align-items: center;
@@ -904,43 +712,30 @@
   font-family: var(--font-heading);
   flex-shrink: 0;
 }
-
 .testi-name {
   font-weight: 700;
   font-size: 0.875rem;
 }
-
 .testi-handle {
   font-size: 0.75rem;
   color: var(--gray);
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 8. ABOUT SECTION
- * 
- * Introduces Kenneth with photo and bio.
- * - Dark background
- * - Desktop: Photo left, bio right
- * - Mobile: Photo centered above bio
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ── ABOUT SECTION ──────────────────────────────────────────────── */
 #about {
   background: var(--black);
 }
-
 #about .section-title {
   color: var(--white);
 }
 
 .about-layout {
   display: grid;
-  grid-template-columns: 1fr; /* Single column on mobile */
+  grid-template-columns: 1fr;
   gap: 40px;
   margin-top: 48px;
   align-items: center;
 }
-
-/* Desktop: Photo and bio side by side */
 @media (min-width: 768px) {
   .about-layout {
     grid-template-columns: auto 1fr;
@@ -950,7 +745,6 @@
 .about-avatar-wrap {
   text-align: center;
 }
-
 .about-avatar-img {
   width: 180px;
   height: 180px;
@@ -962,7 +756,6 @@
   display: block;
   margin: 0 auto 16px;
 }
-
 .about-role {
   font-size: 0.8rem;
   color: var(--gold);
@@ -970,40 +763,29 @@
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-
 .about-content p {
   color: #d1d5db;
   line-height: 1.8;
   margin-bottom: 16px;
   font-size: 1rem;
 }
-
 .about-content p:last-child {
   margin-bottom: 0;
 }
-
 .about-content strong {
   color: var(--white);
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 9. OPT-IN SECTION
- * 
- * Second email capture form with green gradient background.
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ── OPT-IN SECTION ─────────────────────────────────────────────── */
 #optin {
   background: linear-gradient(135deg, var(--green) 0%, #0a3d24 100%);
 }
-
 #optin .section-label {
   color: var(--gold-light);
 }
-
 #optin .section-title {
   color: var(--white);
 }
-
 #optin .section-sub {
   color: rgba(255, 255, 255, 0.8);
 }
@@ -1015,24 +797,21 @@
   flex-direction: column;
   gap: 14px;
 }
-
 .optin-form input {
   padding: 18px 22px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px); /* Frosted glass effect */
+  backdrop-filter: blur(4px);
   color: var(--white);
   font-family: var(--font-body);
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s ease;
 }
-
 .optin-form input:focus {
   border-color: var(--gold);
 }
-
 .optin-form input::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
@@ -1043,56 +822,47 @@
   color: rgba(255, 255, 255, 0.5);
   margin-top: 8px;
 }
-
 .optin-privacy span {
-  margin: 0 4px; /* Spacing around dot separators */
+  margin: 0 4px;
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 10. FINAL CTA SECTION (Stats + CTA Box)
- * 
- * STATS GRID:
- * Shows 4 animated count-up statistics
- * 
- * GRID LAYOUT:
- * - Desktop (>768px):   4 columns (1 row)
- * - Tablet (541-768px): 2 columns (2 rows)
- * - Mobile (≤540px):    1 column (4 rows - stacked)
- * 
- * CTA BOX:
- * Final push to sign up with centered content
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ════════════════════════════════════════════════════════════════
+   FINAL STATS SECTION (#final)
+   Desktop: 4 columns
+   Tablet:  2 columns
+   Mobile:  1 column
+   ════════════════════════════════════════════════════════════════ */
 #final {
   background: var(--beige);
 }
 
-/* Stats grid */
 .final-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
   gap: 20px;
   margin: 48px 0;
 }
 
-/* Tablet: 2 columns */
-@media (max-width: 768px) {
+/* Desktop — 4 columns */
+@media (min-width: 769px) {
   .final-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-/* Mobile: 1 column (stacked) */
+/* Tablet — 2 columns */
+@media (max-width: 768px) and (min-width: 541px) {
+  .final-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile — 1 column */
 @media (max-width: 540px) {
   .final-stats {
     grid-template-columns: 1fr;
-    gap: 14px;
-    margin: 40px 0;
   }
 }
 
-/* Individual stat card */
 .final-stat {
   text-align: center;
   padding: 28px 16px;
@@ -1102,52 +872,25 @@
   border: 2px solid transparent;
   transition: border-color 0.3s ease;
 }
-
 .final-stat:hover {
   border-color: var(--green-mid);
 }
 
-/* The big number */
 .final-stat-num {
   font-family: var(--font-heading);
-  font-size: clamp(1.6rem, 4vw, 2.2rem); /* Responsive sizing */
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
   font-weight: 900;
   color: var(--green);
   margin-bottom: 8px;
   line-height: 1;
 }
-
-/* Label under the number */
 .final-stat-label {
   font-size: 0.78rem;
   color: var(--gray);
   line-height: 1.5;
 }
 
-/* Mobile stat card adjustments */
-@media (max-width: 540px) {
-  .final-stat {
-    padding: 24px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .final-stat-num {
-    font-size: 2rem;
-    margin-bottom: 6px;
-  }
-
-  .final-stat-label {
-    font-size: 0.82rem;
-    max-width: 260px;
-  }
-}
-
-/* ── FINAL CTA BOX ─────────────────────────────────────────────────
- * The white box with headline, text, and CTA button
- * ──────────────────────────────────────────────────────────────── */
-
+/* ── FINAL CTA BOX ──────────────────────────────────────────────── */
 .final-cta-box {
   text-align: center;
   background: var(--white);
@@ -1156,22 +899,18 @@
   box-shadow: var(--shadow-md);
   border: 2px solid var(--green-pale);
 }
-
-/* Mobile adjustments */
 @media (max-width: 540px) {
   .final-cta-box {
     padding: 40px 24px;
     border-radius: var(--radius-md);
   }
 }
-
 .final-cta-box h2 {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 900;
   margin-bottom: 16px;
   line-height: 1.2;
 }
-
 .final-cta-box h2 .accent {
   color: var(--green);
 }
@@ -1184,17 +923,15 @@
   font-size: 1rem;
 }
 
-/* CTA button in final box */
+/* Fix mobile button alignment */
 .final-cta-box .btn-primary {
   margin: 0 auto;
   max-width: 340px;
   font-size: 1rem;
   padding: 18px 28px;
-  flex-wrap: nowrap; /* Prevent icon + text from wrapping */
+  flex-wrap: nowrap;
   text-align: center;
 }
-
-/* Very small mobile screens */
 @media (max-width: 380px) {
   .final-cta-box .btn-primary {
     max-width: 100%;
@@ -1203,14 +940,7 @@
   }
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 11. FAQ SECTION
- * 
- * Accordion-style frequently asked questions.
- * - Only one FAQ can be open at a time
- * - toggleFaq() in shared.js handles the open/close logic
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ── FAQ SECTION ────────────────────────────────────────────────── */
 #faq {
   background: var(--white);
 }
@@ -1224,8 +954,6 @@
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
-
-/* Question button */
 .faq-q {
   width: 100%;
   background: none;
@@ -1243,12 +971,10 @@
   gap: 16px;
   transition: color 0.2s ease;
 }
-
 .faq-q:hover {
   color: var(--green);
 }
 
-/* Arrow icon */
 .faq-arrow {
   width: 24px;
   height: 24px;
@@ -1262,13 +988,10 @@
   color: var(--green);
   font-size: 0.75rem;
 }
-
-/* Rotated arrow when open */
 .faq-item.open .faq-arrow {
   transform: rotate(180deg);
 }
 
-/* Answer (hidden by default) */
 .faq-a {
   max-height: 0;
   overflow: hidden;
@@ -1279,21 +1002,12 @@
   color: var(--gray);
   line-height: 1.75;
 }
-
-/* Answer when FAQ is open */
 .faq-item.open .faq-a {
   max-height: 200px;
   padding-bottom: 22px;
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 12. STICKY MOBILE CTA
- * 
- * Fixed button at bottom of screen on mobile devices.
- * - Hidden when hero or optin sections are visible (via shared.js)
- * - Hidden on tablet and above
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ── STICKY MOBILE CTA ──────────────────────────────────────────── */
 .sticky-cta {
   position: fixed;
   bottom: 0;
@@ -1307,29 +1021,20 @@
   gap: 12px;
   align-items: center;
 }
-
-/* Hidden on tablet and above */
 @media (min-width: 768px) {
   .sticky-cta {
     display: none;
   }
 }
-
 .sticky-cta .btn-primary {
-  flex: 1; /* Take full width */
+  flex: 1;
   padding: 14px;
   font-size: 0.9rem;
 }
 
-/* ════════════════════════════════════════════════════════════════════
- * 13. FORM ERROR MESSAGES
- * 
- * Red error text that appears below form inputs when validation fails.
- * These are dynamically injected by landing.js
- * ════════════════════════════════════════════════════════════════════ */
-
+/* ── FORM ERROR MESSAGES ────────────────────────────────────────── */
 .__field-error {
-  color: #ef4444; /* Red */
+  color: #ef4444;
   font-size: 0.8rem;
   margin-top: 6px;
   text-align: left;

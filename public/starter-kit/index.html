@@ -1,47 +1,24 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- ════════════════════════════════════════════════════════════════
-         CHARACTER ENCODING & VIEWPORT
-         - UTF-8 ensures all characters (including emojis) render correctly
-         - Viewport meta tag makes the page responsive on mobile devices
-    ════════════════════════════════════════════════════════════════ -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- ════════════════════════════════════════════════════════════════
-         PAGE TITLE
-         - Shows in browser tab and search results
-         - "Budget Daily" is two words for readability
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- Page title shown in browser tab -->
     <title>Budget Daily — Free Beginner Budget Starter Kit</title>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         GOOGLE FONTS
-         - Poppins: Used for headings (bold, modern feel)
-         - DM Sans: Used for body text (clean, readable)
-         - display=swap prevents invisible text while fonts load
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
 
-    <!-- ════════════════════════════════════════════════════════════════
-         CSS STYLESHEETS
-         - shared.css: Global styles used on ALL pages (nav, footer, etc.)
-         - landing.css: Styles specific to THIS landing page only
-         - Order matters: shared.css must load first as landing.css depends on it
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- Shared global styles (nav, footer, buttons, variables) -->
     <link rel="stylesheet" href="/assets/css/shared.css" />
+
+    <!-- Page-specific styles for the landing page -->
     <link rel="stylesheet" href="/assets/css/landing.css" />
 
-    <!-- ════════════════════════════════════════════════════════════════
-         SEO META TAGS
-         - description: Shows in Google search results (under the title)
-         - author: Credits the creator
-         - robots: Tells search engines to index this page and follow links
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- SEO Meta Tags -->
     <meta
       name="description"
       content="Download your FREE Budget & Debt-Free Starter Kit. Beginner-friendly tools to crush debt and stop living from paycheck to paycheck."
@@ -49,32 +26,38 @@
     <meta name="author" content="Kenneth Onu" />
     <meta name="robots" content="index, follow" />
 
-    <!-- ════════════════════════════════════════════════════════════════
-         OPEN GRAPH META TAGS (for Facebook, LinkedIn, WhatsApp previews)
-         - These control how the page looks when shared on social media
-         - og:image should be 1200×630px for best results
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn preview) -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Budget & Debt-Free Starter Kit — Budget Daily" />
-    <meta property="og:description" content="Simple beginner-friendly budgeting tools. Free instant access. No credit card required." />
-    <meta property="og:image" content="https://kennethonu.com/assets/images/preview.jpg" />
+    <meta
+      property="og:title"
+      content="Budget & Debt-Free Starter Kit — Budget Daily"
+    />
+    <meta
+      property="og:description"
+      content="Simple beginner-friendly budgeting tools. Free instant access. No credit card required."
+    />
+    <meta
+      property="og:image"
+      content="https://kennethonu.com/assets/images/preview.jpg"
+    />
     <meta property="og:url" content="https://kennethonu.com/starter-kit" />
 
-    <!-- ════════════════════════════════════════════════════════════════
-         TWITTER CARD META TAGS
-         - Controls how the page looks when shared on Twitter/X
-         - summary_large_image shows a big preview image
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Budget & Debt-Free Starter Kit — Budget Daily" />
-    <meta name="twitter:description" content="Finally take control of your money. Free beginner budgeting tools delivered instantly." />
-    <meta name="twitter:image" content="https://kennethonu.com/assets/images/preview.png" />
+    <meta
+      name="twitter:title"
+      content="Budget & Debt-Free Starter Kit — Budget Daily"
+    />
+    <meta
+      name="twitter:description"
+      content="Finally take control of your money. Free beginner budgeting tools delivered instantly."
+    />
+    <meta
+      name="twitter:image"
+      content="https://kennethonu.com/assets/images/preview.png"
+    />
 
-    <!-- ════════════════════════════════════════════════════════════════
-         EMOJI FAVICON
-         - Creates a browser tab icon using an emoji (no image file needed)
-         - The money bag emoji 💰 reinforces the brand
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- Emoji Favicon -->
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>"
@@ -82,122 +65,69 @@
   </head>
 
   <body>
-
-    <!-- ════════════════════════════════════════════════════════════════
-         NAVIGATION BAR
-         - Fixed to top of screen (stays visible when scrolling)
-         - Contains: Logo (left) + CTA button (right, hidden on mobile)
-         - The <span> around "Daily" allows it to be colored gold via CSS
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ NAV ══════════════════════════════════════════════════════ -->
     <nav class="nav">
-      <!-- Logo: "Budget" = green, "Daily" = gold (via CSS on span) -->
-      <a href="/starter-kit" class="nav-logo">💰 Budget<span>Daily</span></a>
-      <!-- CTA button: Hidden on mobile (shown via CSS on tablet+) -->
+      <!-- Logo: "Budget" in green, "Daily" in gold (two words) -->
+      <a href="/starter-kit" class="nav-logo">💰 Budget<span> Daily</span></a>
       <a href="#optin" class="nav-cta">Grab Your Free Kit →</a>
     </nav>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         TRUST BAR (Scrolling Marquee)
-         
-         PURPOSE: Builds instant credibility with trust signals
-         
-         HOW IT WORKS:
-         - .trust-bar is the visible window (green background, fixed height)
-         - .trust-track contains the items and animates horizontally
-         - Items are DUPLICATED (Set A + Set B) for seamless infinite loop
-         - CSS @keyframes "marquee-ltr" moves the track left-to-right
-         - When Set A scrolls out, Set B seamlessly takes its place
-         
-         ACCESSIBILITY: role="marquee" and aria-label for screen readers
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ TRUST BAR — Scrolling Marquee (left → right) ═════════════ -->
     <div class="trust-bar" role="marquee" aria-label="Trust signals">
       <div class="trust-track">
-        
-        <!-- ── SET A: First set of trust items ── -->
+        <!-- Set A -->
         <div class="trust-item">
-          <span class="trust-item-icon">✅</span>
-          <span>100% Free</span>
+          <span class="trust-item-icon">✅</span><span>100% Free</span>
         </div>
         <div class="trust-item">
-          <span class="trust-item-icon">📧</span>
-          <span>Instant Delivery</span>
+          <span class="trust-item-icon">📧</span><span>Instant Delivery</span>
         </div>
         <div class="trust-item">
-          <span class="trust-item-icon">🔒</span>
-          <span>No Spam, Ever</span>
+          <span class="trust-item-icon">🔒</span><span>No Spam, Ever</span>
         </div>
         <div class="trust-item">
-          <span class="trust-item-icon">🏆</span>
-          <span>Proven Results</span>
+          <span class="trust-item-icon">🏆</span><span>Proven Results</span>
         </div>
 
-        <!-- ── SET B: Duplicate of Set A for seamless loop ── -->
+        <!-- Set B (duplicate for seamless infinite scroll) -->
         <div class="trust-item">
-          <span class="trust-item-icon">✅</span>
-          <span>100% Free</span>
+          <span class="trust-item-icon">✅</span><span>100% Free</span>
         </div>
         <div class="trust-item">
-          <span class="trust-item-icon">📧</span>
-          <span>Instant Delivery</span>
+          <span class="trust-item-icon">📧</span><span>Instant Delivery</span>
         </div>
         <div class="trust-item">
-          <span class="trust-item-icon">🔒</span>
-          <span>No Spam, Ever</span>
+          <span class="trust-item-icon">🔒</span><span>No Spam, Ever</span>
         </div>
         <div class="trust-item">
-          <span class="trust-item-icon">🏆</span>
-          <span>Proven Results</span>
+          <span class="trust-item-icon">🏆</span><span>Proven Results</span>
         </div>
-
       </div>
     </div>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         HERO SECTION
-         
-         PURPOSE: First impression — capture attention and get email signups
-         
-         LAYOUT:
-         - Desktop: Two columns (copy on left, dashboard mockup on right)
-         - Mobile: Single column (copy stacked above dashboard)
-         
-         ELEMENTS:
-         - Hero badge: Animated pill that highlights "Free Download"
-         - Headline: Main value proposition with accent color
-         - Subheading: Expands on the benefit
-         - Form: Name + email inputs with submit button
-         - Trust line: Reinforces "no credit card" message
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ HERO SECTION ══════════════════════════════════════════════ -->
     <section id="hero">
       <div class="hero-inner">
-        
-        <!-- ── LEFT COLUMN: Copy + Form ── -->
+        <!-- Left column: Headline + Form -->
         <div class="hero-content">
-          
-          <!-- Badge: Animated pill with pulsing gold dot -->
-          <!-- white-space: nowrap ensures it NEVER wraps to two lines -->
-          <!-- clamp() font-size shrinks text smoothly on small screens -->
+          <!-- Hero badge (never wraps on mobile) -->
           <div class="hero-badge">
             🎁 Free Download — No Credit Card Required
           </div>
 
-          <!-- Main headline: Uses clamp() for responsive font sizing -->
-          <!-- .accent class colors "Control of Your Money" in green -->
           <h1 class="hero-headline">
             Finally Take
             <span class="accent">Control of Your Money</span>
             Without Complicated Budgeting
           </h1>
 
-          <!-- Subheading: Explains what the kit does -->
           <p class="hero-sub">
             Download the FREE <b>Budget & Debt-Free Starter Kit</b> and learn
             how to organize your finances, track spending, and start paying off
             debt with simple systems that actually make sense.
           </p>
 
-          <!-- Opt-in form: Calls handleSubmit() function from landing.js -->
-          <!-- "hero" parameter identifies which form was submitted (for analytics) -->
+          <!-- Hero opt-in form -->
           <form class="hero-form" onsubmit="handleSubmit(event, 'hero')">
             <input
               type="text"
@@ -214,8 +144,12 @@
               autocomplete="email"
             />
             <button type="submit" class="btn-primary">
-              <!-- Download icon (SVG) -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
@@ -224,39 +158,28 @@
             </button>
           </form>
 
-          <!-- Trust line: Centered under button, reinforces no-cost message -->
           <p class="hero-trust">🔒 Free forever. No credit card required.</p>
+        </div>
 
-        </div><!-- /hero-content -->
-
-        <!-- ── RIGHT COLUMN: Animated Dashboard Mockup ── -->
+        <!-- Right column: Animated dashboard mockup -->
         <div class="hero-visual">
-          
-          <!-- Floating badge: Top-left, animates with floatY -->
           <div class="float-badge top-left">
             <div class="badge-dot green"></div>
             Savings up 24% this month
           </div>
 
-          <!-- Dashboard card: Main visual element -->
-          <!-- Animates with floatY for gentle up/down motion -->
           <div class="dashboard-card">
-            
-            <!-- Header: Title + dynamic month (set by shared.js) -->
             <div class="dash-header">
               <div class="dash-title">📊 My Budget Dashboard</div>
-              <!-- #dashMonth is populated by JavaScript with current month/year -->
               <div class="dash-month" id="dashMonth"></div>
             </div>
 
-            <!-- Balance card: Green gradient background -->
             <div class="dash-balance">
               <div class="dash-balance-label">Available Balance</div>
               <div class="dash-balance-amount">$1,847.50</div>
               <div class="dash-balance-sub">↑ $312 more than last month</div>
             </div>
 
-            <!-- Progress bar: Monthly budget -->
             <div class="dash-progress-section">
               <div class="dash-progress-label">
                 <span>Monthly Budget Used</span><span>64%</span>
@@ -266,17 +189,21 @@
               </div>
             </div>
 
-            <!-- Progress bar: Debt payoff (gold gradient) -->
             <div class="dash-progress-section">
               <div class="dash-progress-label">
                 <span>Debt Payoff Goal</span><span>38%</span>
               </div>
               <div class="dash-progress-bar">
-                <div class="dash-progress-fill" style="width: 38%; background: linear-gradient(90deg, #c8a96b, #e8d5a8);"></div>
+                <div
+                  class="dash-progress-fill"
+                  style="
+                    width: 38%;
+                    background: linear-gradient(90deg, #c8a96b, #e8d5a8);
+                  "
+                ></div>
               </div>
             </div>
 
-            <!-- Spending categories: 2x2 grid -->
             <div class="dash-categories">
               <div class="dash-cat">
                 <div class="dash-cat-icon">🏠</div>
@@ -299,36 +226,19 @@
                 <div class="dash-cat-amount">$200</div>
               </div>
             </div>
+          </div>
 
-          </div><!-- /dashboard-card -->
-
-          <!-- Floating badge: Bottom-right -->
           <div class="float-badge bottom-right">
             <div class="badge-dot gold"></div>
             Debt reduced by $450 🎯
           </div>
-
-        </div><!-- /hero-visual -->
-
-      </div><!-- /hero-inner -->
+        </div>
+      </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         PAIN POINTS SECTION
-         
-         PURPOSE: Connect with visitor's struggles (empathy-building)
-         
-         LAYOUT: Dark background with 6 cards in responsive grid
-         - Desktop: 3 columns
-         - Tablet: 2 columns  
-         - Mobile: 1 column (auto-fit handles this)
-         
-         PATTERN: Problem cards followed by hopeful solution message
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ PAIN POINTS SECTION ═══════════════════════════════════════ -->
     <section id="pain">
       <div class="container">
-        
-        <!-- Section header: Centered -->
         <div class="text-center">
           <div class="section-label reveal">You're Not Alone</div>
           <h2 class="section-title reveal" style="color: var(--white)">
@@ -340,331 +250,344 @@
           </p>
         </div>
 
-        <!-- Pain point cards: 6 cards with icons and descriptions -->
-        <!-- .reveal class triggers fade-in animation when scrolled into view -->
         <div class="pain-grid">
-          
           <div class="pain-card reveal">
             <div class="pain-icon">💸</div>
             <h3>"My paycheck disappears before the month ends"</h3>
-            <p>You get paid, blink twice, and it's gone. You're not sure where it went — and that feeling keeps repeating every month.</p>
+            <p>
+              You get paid, blink twice, and it's gone. You're not sure where it
+              went — and that feeling keeps repeating every month.
+            </p>
           </div>
-
           <div class="pain-card reveal">
             <div class="pain-icon">😰</div>
             <h3>"Money stress is ruining my peace of mind"</h3>
-            <p>Every unexpected bill sends panic through your body. You're tired of lying awake at night worrying about finances.</p>
+            <p>
+              Every unexpected bill sends panic through your body. You're tired
+              of lying awake at night worrying about finances.
+            </p>
           </div>
-
           <div class="pain-card reveal">
             <div class="pain-icon">📊</div>
             <h3>"Every budgeting app feels overwhelming"</h3>
-            <p>You've tried apps, spreadsheets, even notebooks. Nothing sticks and you always end up feeling more confused than before.</p>
+            <p>
+              You've tried apps, spreadsheets, even notebooks. Nothing sticks
+              and you always end up feeling more confused than before.
+            </p>
           </div>
-
           <div class="pain-card reveal">
             <div class="pain-icon">🔄</div>
             <h3>"I start strong but lose track every time"</h3>
-            <p>You track for a week, life gets busy, and suddenly you've abandoned the system completely. The cycle repeats.</p>
+            <p>
+              You track for a week, life gets busy, and suddenly you've
+              abandoned the system completely. The cycle repeats.
+            </p>
           </div>
-
           <div class="pain-card reveal">
             <div class="pain-icon">💳</div>
             <h3>"Debt feels like it's growing faster than I can pay it"</h3>
-            <p>You're making minimum payments but the balances barely move. You don't even know where to start attacking it.</p>
+            <p>
+              You're making minimum payments but the balances barely move. You
+              don't even know where to start attacking it.
+            </p>
           </div>
-
           <div class="pain-card reveal">
             <div class="pain-icon">😕</div>
             <h3>"I don't even know where my money goes"</h3>
-            <p>No clear picture of your spending. No real savings plan. Just a vague sense that something needs to change — but how?</p>
+            <p>
+              No clear picture of your spending. No real savings plan. Just a
+              vague sense that something needs to change — but how?
+            </p>
           </div>
-
         </div>
 
-        <!-- Hopeful transition: Green box bridging pain to solution -->
-        <!-- .daily class colors "think" in gold to match brand -->
         <div class="pain-hopeful reveal">
-          <h3>✨ There's a better way — and it's simpler than you <span class="daily">think.</span></h3>
-          <p>You don't need a finance degree. You don't need complicated apps. You just need a clear, beginner-friendly system. That's exactly what this kit gives you.</p>
+          <h3>✨ There's a better way — and it's simpler than you think.</h3>
+          <p>
+            You don't need a finance degree. You don't need complicated apps.
+            You just need a clear, beginner-friendly system. That's exactly what
+            this kit gives you.
+          </p>
         </div>
-
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         FREE STARTER KIT SECTION
-         
-         PURPOSE: Show what's included in the free download (6 tools)
-         
-         GRID LAYOUT:
-         - Desktop (>768px):  3 columns × 2 rows = 6 cards
-         - Tablet (541-768px): 2 columns × 3 rows = 6 cards
-         - Mobile (≤540px):   1 column × 6 rows = 6 cards (stacked)
-         
-         CARDS: Each card has an icon, title, and description
-         On mobile, cards switch to horizontal layout for readability
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ FREE STARTER KIT — 6 CARDS ══════════════════════════════════ -->
     <section id="kit">
       <div class="container">
-        
-        <!-- Section header -->
         <div class="text-center">
           <div class="section-label reveal">The Free Starter Kit</div>
-          <h2 class="section-title reveal">Everything Inside Your Free Budget Kit</h2>
+          <h2 class="section-title reveal">
+            Everything Inside Your Free Budget Kit
+          </h2>
           <p class="section-sub reveal" style="margin: 0 auto">
             Six beginner-friendly tools designed to give you clarity,
             confidence, and a clear path forward — completely free.
           </p>
         </div>
 
-        <!-- Kit cards grid: 6 cards total -->
-        <!-- CSS controls the column layout per breakpoint -->
         <div class="kit-grid">
-
-          <!-- Card 1: Budget Planner -->
+          <!-- Card 1 -->
           <div class="kit-card reveal">
             <div class="kit-icon">📋</div>
-            <!-- .kit-card-body wraps text for mobile horizontal layout -->
             <div class="kit-card-body">
               <h3>Beginner Budget Planner</h3>
-              <p>A clean, simple planner to map your income and expenses in minutes. No complicated formulas needed.</p>
+              <p>
+                A clean, simple planner to map your income and expenses in
+                minutes. No complicated formulas needed.
+              </p>
             </div>
           </div>
 
-          <!-- Card 2: Expense Tracker -->
+          <!-- Card 2 -->
           <div class="kit-card reveal">
             <div class="kit-icon">📈</div>
             <div class="kit-card-body">
               <h3>Expense Tracker</h3>
-              <p>Track exactly where your money goes with a clear, visual layout that makes patterns easy to spot.</p>
+              <p>
+                Track exactly where your money goes with a clear, visual layout
+                that makes patterns easy to spot.
+              </p>
             </div>
           </div>
 
-          <!-- Card 3: Debt Payoff Planner -->
+          <!-- Card 3 -->
           <div class="kit-card reveal">
             <div class="kit-icon">💳</div>
             <div class="kit-card-body">
               <h3>Debt Payoff Planner</h3>
-              <p>A step-by-step system to prioritize and destroy your debt — even if you're starting with very little.</p>
+              <p>
+                A step-by-step system to prioritize and destroy your debt — even
+                if you're starting with very little.
+              </p>
             </div>
           </div>
 
-          <!-- Card 4: Monthly Checklist -->
+          <!-- Card 4 -->
           <div class="kit-card reveal">
             <div class="kit-icon">✅</div>
             <div class="kit-card-body">
               <h3>Monthly Budget Checklist</h3>
-              <p>Never miss a bill or financial task again. This checklist keeps you on track every single month.</p>
+              <p>
+                Never miss a bill or financial task again. This checklist keeps
+                you on track every single month.
+              </p>
             </div>
           </div>
 
-          <!-- Card 5: Beginner Guide -->
+          <!-- Card 5 -->
           <div class="kit-card reveal">
             <div class="kit-icon">📖</div>
             <div class="kit-card-body">
               <h3>Budgeting Beginner Guide</h3>
-              <p>A friendly, jargon-free guide that explains everything you need to know to start budgeting successfully.</p>
+              <p>
+                A friendly, jargon-free guide that explains everything you need
+                to know to start budgeting successfully.
+              </p>
             </div>
           </div>
 
-          <!-- Card 6: Annual Summary (NEW - completes the 6-card grid) -->
+          <!-- Card 6: Annual Summary (new) -->
           <div class="kit-card reveal">
             <div class="kit-icon">📊</div>
             <div class="kit-card-body">
               <h3>Annual Summary</h3>
-              <p>A year-at-a-glance overview to track your financial progress and celebrate how far you've come.</p>
+              <p>
+                A yearly overview that shows your progress, spending trends, and
+                savings growth at a glance.
+              </p>
             </div>
           </div>
-
-        </div><!-- /kit-grid -->
-
+        </div>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         WHY PEOPLE FAIL SECTION
-         
-         PURPOSE: Address objections by explaining why past attempts failed
-         
-         LAYOUT: Two columns
-         - Left: List of failure reasons (red-accented cards)
-         - Right: Solution box (green gradient) showing how Budget Daily is different
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ WHY PEOPLE FAIL ════════════════════════════════════════════ -->
     <section id="why-fail">
       <div class="container">
-        
         <div class="section-label reveal">The Real Problem</div>
         <h2 class="section-title reveal">Why Most Budgeting Attempts Fail</h2>
         <p class="section-sub reveal">
-          It's not your fault. The tools most people use were never designed for beginners.
+          It's not your fault. The tools most people use were never designed for
+          beginners.
         </p>
 
         <div class="fail-layout">
-          
-          <!-- Left column: Failure reasons -->
           <div class="fail-list">
-            
             <div class="fail-item reveal">
               <div class="fail-item-icon">🤯</div>
               <div>
                 <h4>Systems are too complicated</h4>
-                <p>Most budget templates feel like they were designed by accountants, not real people trying to get their finances together.</p>
+                <p>
+                  Most budget templates feel like they were designed by
+                  accountants, not real people trying to get their finances
+                  together.
+                </p>
               </div>
             </div>
-
             <div class="fail-item reveal">
               <div class="fail-item-icon">👁️</div>
               <div>
                 <h4>No visual organization</h4>
-                <p>When you can't see your finances clearly, you lose motivation fast. Walls of numbers kill consistency.</p>
+                <p>
+                  When you can't see your finances clearly, you lose motivation
+                  fast. Walls of numbers kill consistency.
+                </p>
               </div>
             </div>
-
             <div class="fail-item reveal">
               <div class="fail-item-icon">📱</div>
               <div>
                 <h4>Apps are overwhelming</h4>
-                <p>Finance apps bombard you with features and notifications you don't understand — making anxiety worse, not better.</p>
+                <p>
+                  Finance apps bombard you with features and notifications you
+                  don't understand — making anxiety worse, not better.
+                </p>
               </div>
             </div>
-
             <div class="fail-item reveal">
               <div class="fail-item-icon">🔁</div>
               <div>
                 <h4>Consistency becomes impossible</h4>
-                <p>When a system requires too much effort, it gets abandoned the moment life gets busy — which is always.</p>
+                <p>
+                  When a system requires too much effort, it gets abandoned the
+                  moment life gets busy — which is always.
+                </p>
               </div>
             </div>
-
           </div>
 
-          <!-- Right column: Solution box -->
-          <!-- .daily class colors "Daily" in gold -->
           <div class="solution-box reveal">
-            <h3>Budget <span class="daily">Daily</span> is different.</h3>
-            <p>We believe budgeting should feel like a breath of fresh air — not a punishment. Our tools are built specifically for beginners who need clarity, not complexity.</p>
+            <h3>Budget Daily is different.</h3>
+            <p>
+              We believe budgeting should feel like a breath of fresh air — not
+              a punishment. Our tools are built specifically for beginners who
+              need clarity, not complexity.
+            </p>
             <div class="solution-points">
-              <div class="solution-point"><div class="check-icon">✓</div> Designed for total beginners</div>
-              <div class="solution-point"><div class="check-icon">✓</div> Visual and easy to understand at a glance</div>
-              <div class="solution-point"><div class="check-icon">✓</div> Takes 10 minutes a week, not hours</div>
-              <div class="solution-point"><div class="check-icon">✓</div> No Excel skills or financial background needed</div>
-              <div class="solution-point"><div class="check-icon">✓</div> Built for real life, not perfect conditions</div>
+              <div class="solution-point">
+                <div class="check-icon">✓</div>
+                Designed for total beginners
+              </div>
+              <div class="solution-point">
+                <div class="check-icon">✓</div>
+                Visual and easy to understand at a glance
+              </div>
+              <div class="solution-point">
+                <div class="check-icon">✓</div>
+                Takes 10 minutes a week, not hours
+              </div>
+              <div class="solution-point">
+                <div class="check-icon">✓</div>
+                No Excel skills or financial background needed
+              </div>
+              <div class="solution-point">
+                <div class="check-icon">✓</div>
+                Built for real life, not perfect conditions
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         WHY BUDGET DAILY SECTION (#different)
-         
-         PURPOSE: Highlight 6-8 unique selling points
-         
-         GRID LAYOUT:
-         - Desktop (>900px):  4 columns × 2 rows = 8 cards (all visible)
-         - Tablet (541-900px): 2 columns × 4 rows = 8 cards (all visible)
-         - Mobile (≤540px):   1 column × 6 rows = 6 cards (07 & 08 hidden)
-         
-         CARDS 07 & 08: Have .diff-desktop-only class
-         - Visible on desktop and tablet
-         - Hidden on mobile (via CSS) to keep the list manageable
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ WHY BUDGET DAILY — 8 CARDS ══════════════════════════════════ -->
     <section id="different">
       <div class="container">
-        
-        <!-- Section header -->
         <div class="text-center">
           <div class="section-label reveal">Why Budget Daily</div>
           <h2 class="section-title reveal">Simple. Visual. Actually Works.</h2>
           <p class="section-sub reveal" style="margin: 0 auto">
-            We cut everything complicated and kept only what actually helps you build lasting financial habits.
+            We cut everything complicated and kept only what actually helps you
+            build lasting financial habits.
           </p>
         </div>
 
-        <!-- Difference cards grid: 8 cards total -->
         <div class="diff-grid">
-
-          <!-- Card 01: Visible on ALL screens -->
+          <!-- Cards 01–06: visible on ALL screen sizes -->
           <div class="diff-card reveal">
             <div class="diff-num">01</div>
             <h3>Beginner-Friendly First</h3>
-            <p>Every tool is designed assuming you know nothing about budgeting. No jargon, no assumptions, no overwhelm.</p>
+            <p>
+              Every tool is designed assuming you know nothing about budgeting.
+              No jargon, no assumptions, no overwhelm.
+            </p>
           </div>
 
-          <!-- Card 02: Visible on ALL screens -->
           <div class="diff-card reveal">
             <div class="diff-num">02</div>
             <h3>Clean &amp; Visual</h3>
-            <p>See your entire financial picture at a glance. When clarity is visual, motivation stays high and habits form naturally.</p>
+            <p>
+              See your entire financial picture at a glance. When clarity is
+              visual, motivation stays high and habits form naturally.
+            </p>
           </div>
 
-          <!-- Card 03: Visible on ALL screens -->
           <div class="diff-card reveal">
             <div class="diff-num">03</div>
             <h3>Genuinely Simple</h3>
-            <p>Open it, fill it in, done. You'll spend more time living your life than managing spreadsheets.</p>
+            <p>
+              Open it, fill it in, done. You'll spend more time living your life
+              than managing spreadsheets.
+            </p>
           </div>
 
-          <!-- Card 04: Visible on ALL screens -->
           <div class="diff-card reveal">
             <div class="diff-num">04</div>
             <h3>Practical &amp; Real</h3>
-            <p>Built for irregular incomes, unexpected expenses, and the unpredictability of actual human life.</p>
+            <p>
+              Built for irregular incomes, unexpected expenses, and the
+              unpredictability of actual human life.
+            </p>
           </div>
 
-          <!-- Card 05: Visible on ALL screens -->
           <div class="diff-card reveal">
             <div class="diff-num">05</div>
             <h3>Zero Tech Skills Needed</h3>
-            <p>If you can open a file and type numbers, you can use this kit. Seriously, that's it.</p>
+            <p>
+              If you can open a file and type numbers, you can use this kit.
+              Seriously, that's it.
+            </p>
           </div>
 
-          <!-- Card 06: Visible on ALL screens -->
           <div class="diff-card reveal">
             <div class="diff-num">06</div>
             <h3>Results You Can Feel</h3>
-            <p>Less stress, more clarity, actual progress on debt — changes you'll notice within the very first month.</p>
+            <p>
+              Less stress, more clarity, actual progress on debt — changes
+              you'll notice within the very first month.
+            </p>
           </div>
 
-          <!-- Card 07: DESKTOP + TABLET only (hidden on mobile) -->
-          <!-- .diff-desktop-only class hides this on screens ≤540px -->
+          <!-- Cards 07 & 08: Desktop only -->
           <div class="diff-card diff-desktop-only reveal">
             <div class="diff-num">07</div>
             <h3>Weekly Progress Tracking</h3>
-            <p>Small weekly check-ins keep you honest and motivated — without turning money management into a second job.</p>
+            <p>
+              Small weekly check-ins keep you honest and motivated — without
+              turning money management into a second job.
+            </p>
           </div>
 
-          <!-- Card 08: DESKTOP + TABLET only (hidden on mobile) -->
           <div class="diff-card diff-desktop-only reveal">
             <div class="diff-num">08</div>
             <h3>Built for Your Goals</h3>
-            <p>Whether you want to save your first $1,000 or pay off debt — the kit adapts to your personal financial goals.</p>
+            <p>
+              Whether you want to save your first $1,000 or pay off debt — the
+              kit adapts to your personal financial goals.
+            </p>
           </div>
-
-        </div><!-- /diff-grid -->
-
+        </div>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         ABOUT SECTION
-         
-         PURPOSE: Build trust by introducing Kenneth (the creator)
-         
-         LAYOUT: Dark background
-         - Desktop: Photo on left, bio text on right
-         - Mobile: Photo centered above bio text
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ ABOUT SECTION ══════════════════════════════════════════════ -->
     <section id="about">
       <div class="container">
-        
-        <div class="section-label" style="color: var(--gold)">Meet Your Guide</div>
-        
+        <div class="section-label" style="color: var(--gold)">
+          Meet Your Guide
+        </div>
         <div class="about-layout">
-          
-          <!-- Photo + role badge -->
           <div class="about-avatar-wrap reveal">
             <img
               src="/assets/images/kenneth.png"
@@ -674,47 +597,54 @@
             <div class="about-role">Finance Educator &amp; Coach</div>
           </div>
 
-          <!-- Bio text -->
           <div class="about-content">
-            <h2 class="section-title reveal" style="color: var(--white); margin-bottom: 24px">
+            <h2
+              class="section-title reveal"
+              style="color: var(--white); margin-bottom: 24px"
+            >
               Hi, I'm Kenneth.
             </h2>
             <p class="reveal">
-              I know exactly what it feels like to stare at your bank account and feel that sinking dread. I used to live paycheck to paycheck, avoid checking my balance, and tell myself I'd "figure it out eventually." That day never came — until I built a simple system that actually worked for my real life.
+              I know exactly what it feels like to stare at your bank account
+              and feel that sinking dread. I used to live paycheck to paycheck,
+              avoid checking my balance, and tell myself I'd "figure it out
+              eventually." That day never came — until I built a simple system
+              that actually worked for my real life.
             </p>
             <p class="reveal">
-              I created <strong>Budget Daily</strong> because I was tired of finance content that felt like it was made for people who already had money. <strong>You deserve tools that meet you where you are</strong> — confused, overwhelmed, maybe a little scared — and walk you forward step by step.
+              I created <strong>Budget Daily</strong> because I was tired of
+              finance content that felt like it was made for people who already
+              had money.
+              <strong>You deserve tools that meet you where you are</strong> —
+              confused, overwhelmed, maybe a little scared — and walk you
+              forward step by step.
             </p>
             <p class="reveal">
-              This kit is the exact starting point I wish I'd had. No lectures. No judgment. Just a clear, calm system that helps you take your first real step toward financial peace of mind.
+              This kit is the exact starting point I wish I'd had. No lectures.
+              No judgment. Just a clear, calm system that helps you take your
+              first real step toward financial peace of mind.
             </p>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         OPT-IN SECTION (Second Form)
-         
-         PURPOSE: Second chance to capture email (for visitors who scrolled)
-         
-         LAYOUT: Green gradient background, centered form
-         This form also calls handleSubmit() from landing.js
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ OPT-IN SECTION ═════════════════════════════════════════════ -->
     <section id="optin">
       <div class="container text-center">
-        
         <div class="section-label reveal">Free Instant Access</div>
         <h2 class="section-title reveal" style="color: var(--white)">
           Get Your Free Budget Starter Kit Now
         </h2>
-        <p class="section-sub reveal" style="color: rgba(255, 255, 255, 0.8); margin: 0 auto">
-          Join the growing community of beginners finally getting clear on their money.
-          Enter your details below and get instant access — completely free.
+        <p
+          class="section-sub reveal"
+          style="color: rgba(255, 255, 255, 0.8); margin: 0 auto"
+        >
+          Join the growing community of beginners finally getting clear on their
+          money. Enter your details below and get instant access — completely
+          free.
         </p>
 
-        <!-- Second opt-in form -->
         <form class="optin-form" onsubmit="handleSubmit(event, 'optin')">
           <input
             type="text"
@@ -733,95 +663,97 @@
           <button type="submit" class="btn-gold">🚀 Get Access Now</button>
         </form>
 
-        <!-- Privacy reassurance -->
         <p class="optin-privacy">
-          🔒 Your info is safe with us.<span>·</span>No spam, ever.<span>·</span>Unsubscribe anytime.
+          🔒 Your info is safe with us.<span>·</span>No spam,
+          ever.<span>·</span>Unsubscribe anytime.
         </p>
-
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         FINAL CTA SECTION (Stats + CTA Box)
-         
-         STATS SECTION:
-         - 4 cards with animated count-up numbers
-         - Numbers start at 0 and count up when scrolled into view
-         - Animation is triggered by IntersectionObserver in shared.js
-         
-         DATA ATTRIBUTES ON EACH .final-stat-num:
-         - data-target: The final number to count to
-         - data-prefix: Text before the number (e.g., "$")
-         - data-suffix: Text after the number (e.g., " mins", "%")
-         
-         GRID LAYOUT:
-         - Desktop (>768px): 4 columns (1 row)
-         - Tablet (541-768px): 2 columns (2 rows)
-         - Mobile (≤540px): 1 column (4 rows, stacked)
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ FINAL CTA + COUNT-UP STATS ══════════════════════════════════ -->
     <section id="final">
       <div class="container">
-
-        <!-- Stats grid: 4 cards with count-up animation -->
+        <!-- Stats row -->
         <div class="final-stats">
-
-          <!-- Stat 1: Average savings -->
           <div class="final-stat reveal">
             <div
               class="final-stat-num"
               data-target="375"
               data-prefix="$"
               data-suffix=""
-            >$0</div>
-            <div class="final-stat-label">Average Monthly Savings After First Budget Audit</div>
+            >
+              $0
+            </div>
+            <div class="final-stat-label">
+              Average Monthly Savings After First Budget Audit
+            </div>
           </div>
 
-          <!-- Stat 2: Time commitment -->
           <div class="final-stat reveal">
             <div
               class="final-stat-num"
               data-target="10"
               data-prefix=""
               data-suffix=" mins"
-            >0 mins</div>
-            <div class="final-stat-label">Weekly Time Commitment to Maintain</div>
+            >
+              0 min
+            </div>
+            <div class="final-stat-label">
+              Weekly Time Commitment to Maintain
+            </div>
           </div>
 
-          <!-- Stat 3: Tools included -->
           <div class="final-stat reveal">
             <div
               class="final-stat-num"
               data-target="6"
               data-prefix=""
               data-suffix=" Tools"
-            >0 Tools</div>
-            <div class="final-stat-label">Complete Beginner System Included</div>
+            >
+              0 Tools
+            </div>
+            <div class="final-stat-label">
+              Complete Beginner System Included
+            </div>
           </div>
 
-          <!-- Stat 4: 100% free -->
           <div class="final-stat reveal">
             <div
               class="final-stat-num"
               data-target="100"
               data-prefix=""
               data-suffix="%"
-            >0%</div>
+            >
+              0%
+            </div>
             <div class="final-stat-label">Free — No Credit Card Ever</div>
           </div>
-
         </div>
 
-        <!-- CTA box: Final push to sign up -->
+        <!-- CTA Box -->
         <div class="final-cta-box reveal">
-          <h2>Financial Clarity Changes<span class="accent"> Everything</span></h2>
+          <h2>
+            Financial Clarity Changes<span class="accent"> Everything</span>
+          </h2>
           <p>
-            Imagine opening your phone and actually feeling calm about your money.
-            Less debt. More savings. Real progress — finally.
-            It starts with one small step today.
+            Imagine opening your phone and actually feeling calm about your
+            money. Less debt. More savings. Real progress — finally. It starts
+            with one small step today.
           </p>
-          <!-- CTA button: Links to #optin form above -->
-          <a href="#optin" class="btn-primary" style="text-decoration: none; display: flex;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" style="flex-shrink: 0">
+          <a
+            href="#optin"
+            class="btn-primary"
+            style="text-decoration: none; display: flex"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              width="18"
+              height="18"
+              style="flex-shrink: 0"
+            >
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
               <polyline points="7 10 12 15 17 10" />
               <line x1="12" y1="15" x2="12" y2="3" />
@@ -829,134 +761,112 @@
             Download Now
           </a>
         </div>
-
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         FAQ SECTION
-         
-         PURPOSE: Answer common objections/questions
-         
-         BEHAVIOR:
-         - Each FAQ item is collapsed by default
-         - Clicking the question toggles open/closed
-         - Only one FAQ can be open at a time (accordion behavior)
-         - toggleFaq() function is defined in shared.js
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ FAQ SECTION ════════════════════════════════════════════════ -->
     <section id="faq">
       <div class="container">
-        
         <div class="text-center">
           <div class="section-label reveal">FAQ</div>
           <h2 class="section-title reveal">Questions? We've Got Answers.</h2>
         </div>
 
         <div class="faq-list">
-
-          <!-- FAQ 1 -->
           <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
               Is the starter kit really free?
               <span class="faq-arrow">▼</span>
             </button>
             <div class="faq-a">
-              Yes — 100% free. No credit card, no trial. Just sign up and we'll email it to you in under a minute.
+              Yes — 100% free. No credit card, no trial. Just sign up and we'll
+              email it to you in under a minute.
             </div>
           </div>
 
-          <!-- FAQ 2 -->
           <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
               Do I need to know Excel or any special software?
               <span class="faq-arrow">▼</span>
             </button>
             <div class="faq-a">
-              Not at all. Everything is designed for absolute beginners. If you can fill in a name and date, you can use this kit.
+              Not at all. Everything is designed for absolute beginners. If you
+              can fill in a name and date, you can use this kit.
             </div>
           </div>
 
-          <!-- FAQ 3 -->
           <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
               I've tried budgeting before and failed. Will this actually work?
               <span class="faq-arrow">▼</span>
             </button>
             <div class="faq-a">
-              That's exactly who this is designed for. Most budgeting systems fail because they're too complex or too rigid. This kit is designed for real life — with simple layouts and gentle prompts that make consistency actually possible.
+              That's exactly who this is designed for. Most budgeting systems
+              fail because they're too complex or too rigid. This kit is
+              designed for real life — with simple layouts and gentle prompts
+              that make consistency actually possible.
             </div>
           </div>
 
-          <!-- FAQ 4 -->
           <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
               How long will it take to set up?
               <span class="faq-arrow">▼</span>
             </button>
             <div class="faq-a">
-              Most people have their full budget set up in under 30 minutes the first time. After that, it only takes about 10 minutes per week to maintain.
+              Most people have their full budget set up in under 30 minutes the
+              first time. After that, it only takes about 10 minutes per week to
+              maintain.
             </div>
           </div>
 
-          <!-- FAQ 5 -->
           <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
               I have irregular income — will this work for me?
               <span class="faq-arrow">▼</span>
             </button>
             <div class="faq-a">
-              Absolutely. The kit includes guidance for irregular income earners — freelancers, gig workers, and anyone whose income changes month to month.
+              Absolutely. The kit includes guidance for irregular income earners
+              — freelancers, gig workers, and anyone whose income changes month
+              to month.
             </div>
           </div>
 
-          <!-- FAQ 6 -->
           <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
               Will this work if I'm in debt?
               <span class="faq-arrow">▼</span>
             </button>
             <div class="faq-a">
-              Especially if you're in debt. The Debt Payoff Planner is designed to give you a clear, motivating roadmap forward.
+              Especially if you're in debt. The Debt Payoff Planner is designed
+              to give you a clear, motivating roadmap forward.
             </div>
           </div>
 
-          <!-- FAQ 7 -->
           <div class="faq-item">
             <button class="faq-q" onclick="toggleFaq(this)">
               When will I receive the kit after signing up?
               <span class="faq-arrow">▼</span>
             </button>
             <div class="faq-a">
-              Instantly! You'll receive an email with your download link within minutes of signing up. Check your inbox and spam folder just in case. If it doesn't arrive within 10 minutes, email us at hello@kennethonu.com.
+              Instantly! You'll receive an email with your download link within
+              minutes of signing up. Check your inbox and spam folder just in
+              case. If it doesn't arrive within 10 minutes, email us at
+              hello@kennethonu.com.
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         FOOTER
-         
-         STRUCTURE:
-         - Logo (Budget = white, Daily = gold)
-         - Tagline (most visible text after logo)
-         - Navigation links (smaller, faint)
-         - Divider line
-         - Legal disclaimer (smallest, faintest)
-         
-         The <span> around "Daily" allows two-tone coloring via CSS
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ FOOTER ═════════════════════════════════════════════════════ -->
     <footer class="footer">
       <div class="footer-inner">
+        <!-- Logo: "Budget" in white, "Daily" in gold -->
+        <div class="footer-logo">💰 Budget<span> Daily</span></div>
 
-        <!-- Logo -->
-        <div class="footer-logo">💰 Budget<span>Daily</span></div>
-
-        <!-- Tagline: Larger and brighter than links -->
         <p class="footer-tagline">Crushing Debt. Building Wealth.</p>
 
-        <!-- Navigation links: Smaller and fainter -->
         <div class="footer-links">
           <a href="/privacy">Privacy Policy</a>
           <span class="sep">•</span>
@@ -967,54 +877,24 @@
           <a href="/unsubscribe">Unsubscribe</a>
         </div>
 
-        <!-- Divider -->
         <hr class="footer-divider" />
 
-        <!-- Legal disclaimer: Smallest text -->
         <p class="footer-legal">
           © 2026 Budget Daily — Kenneth Onu. All rights reserved.<br />
-          This site is not affiliated with any financial institution.
-          Content is for educational purposes only.
+          This site is not affiliated with any financial institution. Content is
+          for educational purposes only.
         </p>
-
       </div>
     </footer>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         STICKY MOBILE CTA
-         
-         PURPOSE: Always-visible CTA button on mobile devices
-         
-         BEHAVIOR (controlled by shared.js):
-         - HIDDEN when hero or optin sections are visible
-         - SHOWN when user has scrolled past hero and optin
-         - Only visible on screens <768px (hidden on tablet+)
-    ════════════════════════════════════════════════════════════════ -->
+    <!-- ══ STICKY MOBILE CTA ══════════════════════════════════════════ -->
     <div class="sticky-cta">
       <a href="#optin" class="btn-primary" style="text-decoration: none">
         Get Your Starter Kit
       </a>
     </div>
 
-    <!-- ════════════════════════════════════════════════════════════════
-         JAVASCRIPT FILES
-         
-         - shared.js: Runs on ALL pages
-           - Scroll reveal animations
-           - FAQ accordion
-           - Dynamic dashboard date
-           - Sticky CTA visibility
-           - Count-up animation for stats
-           
-         - landing.js: Runs only on landing page
-           - Form validation
-           - Form submission to Netlify function
-           - Session storage for thank-you page gate
-           
-         Placed at end of body for faster initial page render
-    ════════════════════════════════════════════════════════════════ -->
     <script src="/assets/js/shared.js"></script>
     <script src="/assets/js/landing.js"></script>
-
   </body>
 </html>
