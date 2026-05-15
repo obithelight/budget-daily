@@ -311,74 +311,103 @@ section {
 }
 
 /* ════════════════════════════════════════════════════════════════════
- * TRUST BAR — Scrolling Marquee (all screen sizes)
+ * TRUST BAR — Scrolling Marquee
+ *
+ * FIX: Added flex-shrink: 0 and min-width: max-content to .trust-track
+ * This prevents the track from collapsing and stacking on mobile.
  * ════════════════════════════════════════════════════════════════════ */
+
 .trust-bar {
   background: var(--green);
-  overflow: hidden;
-  margin-top: 65px;
+  overflow: hidden; /* Clips the scrolling content */
+  margin-top: 65px; /* Pushes below fixed nav */
   padding: 0;
-  white-space: nowrap;
   position: relative;
-  height: 44px;
-  display: flex;
-  align-items: center;
+  height: 44px; /* Fixed height prevents stacking */
+
+  /* Use block (not flex) so the inline-flex track scrolls correctly */
+  display: block;
+  line-height: 44px; /* Vertically center the track */
+  white-space: nowrap; /* Prevent any wrapping */
 }
 
-/* Fade edges */
-.trust-bar::before,
+/* Fade edge — left */
+.trust-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to right, var(--green), transparent);
+}
+
+/* Fade edge — right */
 .trust-bar::after {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 60px;
+  right: 0;
+  width: 40px;
   z-index: 2;
   pointer-events: none;
-}
-.trust-bar::before {
-  left: 0;
-  background: linear-gradient(to right, var(--green), transparent);
-}
-.trust-bar::after {
-  right: 0;
   background: linear-gradient(to left, var(--green), transparent);
 }
 
-/* Moving track */
+/* The moving track */
 .trust-track {
-  display: inline-flex;
+  display: inline-flex; /* Keeps all items in one horizontal row */
   align-items: center;
-  gap: 0;
+  flex-wrap: nowrap; /* CRITICAL: Never wrap to next line */
+  flex-shrink: 0; /* CRITICAL: Never compress/collapse */
+  min-width: max-content; /* CRITICAL: Always wide enough for content */
+  height: 44px;
   animation: marquee-ltr 28s linear infinite;
   will-change: transform;
 }
 
+/* Pause on hover */
 .trust-bar:hover .trust-track {
   animation-play-state: paused;
 }
 
+/* Individual trust item */
 .trust-item {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 0 32px;
+  padding: 0 28px;
   font-size: 0.8rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
-  white-space: nowrap;
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  white-space: nowrap; /* Each item stays on one line */
+  flex-shrink: 0; /* Items never shrink */
   height: 44px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
+
 .trust-item:last-child {
   border-right: none;
 }
+
 .trust-item-icon {
   font-size: 1rem;
   line-height: 1;
 }
 
-/* ── SHARED FOOTER ──────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════════
+ * SHARED FOOTER
+ *
+ * Visual hierarchy (most to least prominent):
+ * 1. Logo        — large, green + gold
+ * 2. Tagline     — medium, #9ca3af (light gray)
+ * 3. Nav links   — small, #4b5563 (faint) — 3 per row, Unsubscribe hidden
+ * 4. Legal text  — smallest, #4b5563 (same faint shade)
+ * ════════════════════════════════════════════════════════════════════ */
+
 .footer {
   background: var(--black);
   padding: 32px var(--space-md) 24px;
@@ -390,7 +419,7 @@ section {
   text-align: center;
 }
 
-/* Logo: "Budget" = white, "Daily" = gold */
+/* Logo: "Budget" = white, "Daily" = gold via <span> */
 .footer-logo {
   font-family: var(--font-heading);
   font-weight: 800;
@@ -402,14 +431,15 @@ section {
   justify-content: center;
   letter-spacing: -0.5px;
 }
+
 .footer-logo span {
   color: var(--gold);
 }
 
-/* Tagline — more prominent */
+/* Tagline: More prominent than links */
 .footer-tagline {
-  font-size: 0.85rem;
-  color: #9ca3af;
+  font-size: 0.85rem; /* Larger than links */
+  color: #9ca3af; /* Lighter — more visible */
   margin-bottom: 16px;
   line-height: 1.55;
   max-width: 340px;
@@ -417,32 +447,49 @@ section {
   margin-right: auto;
 }
 
-/* Footer links — smaller and fainter */
+/* Nav links container */
 .footer-links {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px 12px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* MOBILE FIX: Never wrap — stays one line */
+  gap: 0; /* No gap — use separators for spacing */
   margin-bottom: 16px;
+  white-space: nowrap; /* All items on one line */
 }
+
+/* Individual link */
 .footer-links a {
-  font-size: 0.72rem;
-  color: #4b5563;
+  font-size: 0.68rem; /* Smaller than tagline */
+  color: #4b5563; /* Faint — same shade as legal */
   text-decoration: none;
   transition: color 0.2s ease;
-  padding: 2px 0;
+  padding: 2px 6px; /* Horizontal padding instead of gap */
 }
+
 .footer-links a:hover {
   color: var(--gold);
 }
 
+/* Dot separator between links */
 .footer-links .sep {
   color: #374151;
   font-size: 0.55rem;
   user-select: none;
+  flex-shrink: 0;
 }
 
+/* ── HIDE UNSUBSCRIBE everywhere ──
+ * The unsubscribe link is already accessible via email footer links.
+ * Hiding it cleans up the footer without removing the functionality.
+ */
+.footer-links a[href="/unsubscribe"],
+.footer-links .sep:last-of-type {
+  /* Hide the dot before Unsubscribe */
+  display: none;
+}
+
+/* Horizontal divider */
 .footer-divider {
   border: none;
   border-top: 1px solid #1a1a1a;
@@ -451,32 +498,47 @@ section {
 
 /* Legal disclaimer */
 .footer-legal {
-  font-size: 0.68rem;
-  color: #4b5563;
+  font-size: 0.68rem; /* Smallest text */
+  color: #4b5563; /* Same faint shade as links */
   line-height: 1.75;
 }
 
-/* Mobile footer */
+/* ── Mobile footer ── */
 @media (max-width: 540px) {
   .footer {
-    padding: 28px 20px 20px;
+    padding: 28px 16px 20px;
   }
+
   .footer-tagline {
-    font-size: 0.82rem;
-    margin-bottom: 14px;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
   }
+
   .footer-links {
-    gap: 5px 10px;
-    margin-bottom: 14px;
+    flex-wrap: nowrap; /* Force single row on mobile */
+    gap: 0;
+    margin-bottom: 12px;
   }
+
   .footer-links a {
-    font-size: 0.7rem;
+    font-size: 0.64rem; /* Slightly smaller on mobile */
+    padding: 2px 4px;
   }
+
+  /* Keep sep visible on mobile — needed for one-line layout */
   .footer-links .sep {
+    display: inline;
+    font-size: 0.5rem;
+  }
+
+  /* Unsubscribe stays hidden on mobile */
+  .footer-links a[href="/unsubscribe"],
+  .footer-links .sep:last-of-type {
     display: none;
   }
+
   .footer-legal {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
   }
 }
 

@@ -99,56 +99,62 @@ function toggleFaq(btn) {
  * 5. COUNT-UP ANIMATION — for #final stats
  * ══════════════════════════════════════════════════════════════════
  *
- * HOW IT WORKS:
- *   - Each .final-stat-num element gets a data-target attribute
- *     with the final number to count to.
- *   - When the stats section scrolls into view, numbers count up
- *     from 0 to their target over ~1.8 seconds.
- *   - Runs only once (observer disconnects after firing).
+ * FIX: Lowered threshold from 0.4 to 0.1 so it triggers on mobile
+ * when even just 10% of the section is visible.
  *
- * DATA ATTRIBUTES on each .final-stat-num:
- *   data-target="340"     → counts to 340
- *   data-prefix="$"       → shows "$" before number (e.g. $340)
- *   data-suffix=" min"    → shows " min" after number
- *   data-suffix=" Tools"  → shows " Tools" after
- *   data-suffix="%"       → shows "%" after
+ * Also added rootMargin to start slightly before section enters view,
+ * giving the animation time to run as user scrolls.
  * ══════════════════════════════════════════════════════════════════ */
 (function initCountUp() {
+  /* Only run on pages that have the #final section */
   var statsSection = document.getElementById("final");
   if (!statsSection) return;
 
+  /* Find all stat numbers that have a data-target attribute */
   var statEls = statsSection.querySelectorAll(".final-stat-num[data-target]");
   if (!statEls.length) return;
 
+  /* Flag to ensure animation only runs once */
   var hasAnimated = false;
 
-  /* Easing function — starts fast, slows near end */
+  /* ── Easing function ──
+   * easeOutQuart: Starts fast, decelerates near the end.
+   * t = progress from 0 to 1
+   * Returns eased value from 0 to 1
+   */
   function easeOutQuart(t) {
     return 1 - Math.pow(1 - t, 4);
   }
 
+  /* ── Animate a single counter element ──
+   * Reads data-target, data-prefix, data-suffix, data-decimals
+   * Uses requestAnimationFrame for smooth 60fps animation
+   */
   function animateCounter(el) {
     var target = parseFloat(el.getAttribute("data-target")) || 0;
     var prefix = el.getAttribute("data-prefix") || "";
     var suffix = el.getAttribute("data-suffix") || "";
-    var decimals = el.getAttribute("data-decimals") || 0;
-    var duration = 1800; /* ms */
+    var decimals = parseInt(el.getAttribute("data-decimals")) || 0;
+    var duration = 1800; /* Total animation time in ms */
     var start = null;
 
     function step(timestamp) {
+      /* Record start time on first frame */
       if (!start) start = timestamp;
 
       var elapsed = timestamp - start;
-      var progress = Math.min(elapsed / duration, 1);
+      var progress = Math.min(elapsed / duration, 1); /* 0 to 1 */
       var eased = easeOutQuart(progress);
       var current = target * eased;
 
+      /* Update the displayed number */
       el.textContent = prefix + current.toFixed(decimals) + suffix;
 
+      /* Continue animating until progress reaches 1 (100%) */
       if (progress < 1) {
         requestAnimationFrame(step);
       } else {
-        /* Ensure exact final value */
+        /* Snap to exact final value to avoid floating point issues */
         el.textContent = prefix + target.toFixed(decimals) + suffix;
       }
     }
@@ -156,24 +162,37 @@ function toggleFaq(btn) {
     requestAnimationFrame(step);
   }
 
+  /* ── IntersectionObserver ──
+   * Watches the #final section.
+   * Triggers count-up when section scrolls into view.
+   *
+   * MOBILE FIX:
+   * - threshold: 0.1 → triggers when just 10% is visible (was 0.4)
+   * - rootMargin: "0px 0px -50px 0px" → triggers 50px before bottom of viewport
+   *   This ensures it fires before user scrolls fully past the section
+   */
   var countObserver = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting && !hasAnimated) {
           hasAnimated = true;
 
-          /* Stagger each number slightly for a premium feel */
+          /* Stagger each counter by 150ms for a cascading effect */
           statEls.forEach(function (el, index) {
             setTimeout(function () {
               animateCounter(el);
             }, index * 150);
           });
 
+          /* Stop watching — animation only runs once */
           countObserver.disconnect();
         }
       });
     },
-    { threshold: 0.4 } /* Trigger when 40% of section visible */,
+    {
+      threshold: 0.1 /* MOBILE FIX: Was 0.4, now 0.1 */,
+      rootMargin: "0px 0px -50px 0px" /* Trigger 50px before fully in view */,
+    },
   );
 
   countObserver.observe(statsSection);
